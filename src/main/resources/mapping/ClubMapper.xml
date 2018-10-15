@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.badminton.dao.ClubMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.badminton.domain.Club">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="club_name" property="clubName" jdbcType="VARCHAR"/>
+        <result column="club_user_id" property="clubUserId" jdbcType="INTEGER"/>
+        <result column="club_logo" property="clubLogo" jdbcType="VARCHAR"/>
+        <result column="club_memo" property="clubMemo" jdbcType="VARCHAR"/>
+        <result column="club_address" property="clubAddress" jdbcType="VARCHAR"/>
+        <result column="club_qq_group" property="clubQqGroup" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select *
+        from club
+        where status = 1
+    </select>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from club
+        where status = 1 and id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.young.sys.badminton.domain.Club">
+        insert into club (club_name, club_user_id,
+                          club_logo, club_memo, club_address,
+                          club_qq_group)
+        values (#{clubName,jdbcType=VARCHAR}, #{clubUserId,jdbcType=INTEGER},
+                #{clubLogo,jdbcType=VARCHAR}, #{clubMemo,jdbcType=VARCHAR}, #{clubAddress,jdbcType=VARCHAR},
+                #{clubQqGroup,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.young.sys.badminton.domain.Club">
+        update club
+        set club_name     = #{clubName,jdbcType=VARCHAR},
+            club_user_id  = #{clubUserId,jdbcType=INTEGER},
+            club_logo     = #{clubLogo,jdbcType=VARCHAR},
+            club_memo     = #{clubMemo,jdbcType=VARCHAR},
+            club_address  = #{clubAddress,jdbcType=VARCHAR},
+            club_qq_group = #{clubQqGroup,jdbcType=VARCHAR},
+            status        = #{status,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="deleteById" parameterType="java.lang.Integer">
+        update club
+        set status = -1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
