@@ -12,7 +12,7 @@ create table activity
   activity_memo varchar(1000) null comment '活动说明',
   status int default '1' null comment '状态'
 )
-  comment '活动表' engine=InnoDB
+  comment '活动表' engine=InnoDB CHARACTER SET utf8
 ;
 
 create table activity_member
@@ -26,7 +26,7 @@ create table activity_member
   member_phone bigint null comment '联系电话',
   status int default '1' null comment '状态'
 )
-  comment '活动成员表' engine=InnoDB
+  comment '活动成员表' engine=InnoDB CHARACTER SET utf8
 ;
 
 create table club
@@ -41,7 +41,7 @@ create table club
   club_qq_group varchar(100) null comment '俱乐部QQ群',
   status int default '1' null comment '状态'
 )
-  comment '俱乐部表' engine=InnoDB
+  comment '俱乐部表' engine=InnoDB CHARACTER SET utf8
 ;
 
 create table `match`
@@ -59,7 +59,7 @@ create table `match`
   end_time varchar(30) null comment '比赛结束时间',
   status int default '1' null comment '状态'
 )
-  comment '比赛表' engine=InnoDB
+  comment '比赛表' engine=InnoDB CHARACTER SET utf8
 ;
 
 create table match_member
@@ -77,7 +77,7 @@ create table match_member
   match_point3 varchar(50) null comment '第三场',
   status int default '1' null comment '状态'
 )
-  comment '比赛人员安排表' engine=InnoDB
+  comment '比赛人员安排表' engine=InnoDB CHARACTER SET utf8
 ;
 
 create table user
@@ -93,6 +93,6 @@ create table user
   role int default '0' null comment '角色(0-用户;1-系统管理员)',
   status int default '1' null comment '状态(1-正常;-1-失效)'
 )
-  comment '后台用户表' engine=InnoDB
+  comment '后台用户表' engine=InnoDB CHARACTER SET utf8
 ;
 
