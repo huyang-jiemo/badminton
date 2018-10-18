@@ -17,9 +17,18 @@ public class FileUploadUtil {
         }
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf("."));
-        String path = request.getSession().getServletContext().getRealPath(key + File.separator);
+        String path = request.getServletContext().getRealPath(File.separator + key + File.separator);
+        File pathFile = new File(path);
+        //判断上传文件的保存目录是否存在
+        if (!pathFile.exists() && !pathFile.isDirectory()) {
+            //创建目录
+            pathFile.mkdir();
+        }
         String newFileName = key + "_" + new Date().getTime() + suffix;
         File tempFile = new File(path, newFileName);
+        System.out.println(path);
+        System.out.println(tempFile.getParentFile());
+        System.out.println(tempFile.getPath());
         if (!tempFile.getParentFile().exists()) {
             tempFile.getParentFile().mkdir();
         }
