@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Date;
 
 public class FileUploadUtil {
+
     //文件上传
     public static String uploadFile(MultipartFile file, HttpServletRequest request, String key) {
         if (ObjectUtils.isEmpty(file)) {
@@ -16,7 +17,7 @@ public class FileUploadUtil {
         }
         String fileName = file.getOriginalFilename();
         String suffix = fileName.substring(fileName.lastIndexOf("."));
-        String path = request.getSession().getServletContext().getRealPath(key + "/");
+        String path = request.getSession().getServletContext().getRealPath(key + File.separator);
         String newFileName = key + "_" + new Date().getTime() + suffix;
         File tempFile = new File(path, newFileName);
         if (!tempFile.getParentFile().exists()) {
@@ -34,6 +35,6 @@ public class FileUploadUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "/" + key + "/" + newFileName;
+        return File.separator + key + File.separator + newFileName;
     }
 }
