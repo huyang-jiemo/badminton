@@ -96,3 +96,4 @@ create table user
   comment '后台用户表' engine=InnoDB CHARACTER SET utf8
 ;
 
+insert into user (account,nick,sex,phone,pwd,role) values ('admin','系统管理员',1,18607169044,'171415121310',1);

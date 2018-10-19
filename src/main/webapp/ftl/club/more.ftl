@@ -33,9 +33,11 @@
                                 </div>
                                 <div class="text-left">
                                     <div class="text-lg-left alert alert-primary" style="font-size: 16pt;">
-                                        <span class="badge badge-primary col-2 text-left">活动地点（场馆）：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>${club.clubAddress!''}</small>
+                                        <span class="col-2 text-left">活动地点（场馆）：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>${club.clubAddress!''}</small>
                                         <hr>
-                                        <span class="badge badge-primary col-2 text-left">QQ群：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>${club.clubQqGroup!''}</small>
+                                        <#if club.clubQqGroup??>
+                                            <span class="col-2 text-left">QQ群：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>${club.clubQqGroup!''}</small>
+                                        </#if>
                                     </div>
                                 </div>
                                 <div class="carousel slide card card-body text-center" data-ride="carousel">

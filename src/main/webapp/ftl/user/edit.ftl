@@ -1,115 +1,64 @@
 <#assign ctx=request.getContextPath()/>
 <#import "${ctx}/layout/layout.ftl" as layout>
 <@layout.layout 0>
-    <style>
-        .table td, .table th{
-            vertical-align: middle;
-        }
-    </style>
     <!-- main content area start -->
         <div class="main-content-inner">
             <div class="container">
-                <div id="userListDivRow" class="row">
-                    <div class="col-12 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title" style="display: flex;justify-content: space-between;">人员管理<button class="btn btn-xs mt-3 btn-primary user-add-btn">添加</button></h4>
-                                <div class="single-table">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover progress-table text-center">
-                                            <thead class="text-uppercase">
-                                                <tr>
-                                                    <th scope="col">序号</th>
-                                                    <th scope="col">头像</th>
-                                                    <th scope="col">账号</th>
-                                                    <th scope="col">昵称</th>
-                                                    <th scope="col">性别</th>
-                                                    <th scope="col">电话</th>
-                                                    <th scope="col">操作</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <#list userList as user>
-                                                <tr>
-                                                    <th scope="row">${user_index+1}</th>
-                                                    <td>
-                                                        <#if user.avatar??>
-                                                            <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="${user.avatar!''}" alt="image">
-                                                        <#else>
-                                                            <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="${ctx}/assets/images/author/avatarHead.jpg" alt="image">
-                                                        </#if>
-                                                    </td>
-                                                    <td>${user.account!''}</td>
-                                                    <td>${user.nick!''}</td>
-                                                    <td>
-                                                        <#assign sexValue = (user.sex == 1)?string((user.sex == 2)?string('女','男'),(user.sex == 0)?string('未知','女')) />
-                                                        ${sexValue}
-                                                    </td>
-                                                    <td><span class="status-p bg-success">${user.phone!''}</span></td>
-                                                    <td>
-                                                        <ul class="d-flex justify-content-center">
-                                                            <li class="mr-3"><a href="/user/edit.do?id=${user.id!''}" class="text-secondary"><i class="fa fa-edit"></i>&nbsp;编辑</a></li>
-                                                            <li><a href="/user/delete.do?id=${user.id!''}" class="text-danger"><i class="ti-trash"></i>&nbsp;删除</a></li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                                </#list>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="userAddDivRow" class="row" style="display: none;">
+                <div class="row">
                     <div class="col-lg-12 col-ml-12">
                         <div class="row">
                             <!-- Textual inputs start -->
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title" style="display: flex;justify-content: space-between;">添加人员<a href="/user/index.do" class="btn btn-secondary btn-xs mt-3 user-add-return-btn">取消并返回</a></h4>
+                                        <h4 class="header-title" style="display: flex;justify-content: space-between;">修改人员信息<a href="/user/index.do" class="btn btn-secondary btn-xs mt-3 user-add-return-btn">取消并返回</a></h4>
                                         <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>人员信息请以俱乐部活动实际信息为准，联系方式如实填写，方便联系；信息一旦提交无法修改，请提交前详细核实。</p>
-                                        <form id="userFormAdd" method="post" enctype="multipart/form-data" action="${ctx}/user/saveUserAdd.do">
+                                        <form id="userFormEdit" method="post" enctype="multipart/form-data" action="/user/saveUserEdit.do">
+                                            <label hidden for="id"></label>
+                                            <input hidden id="id" name="id" type="text" value="${user.id!''}">
                                             <div class="form-group">
                                                 <label for="account" class="col-form-label"><code>*&nbsp;</code>账号</label>
-                                                <input class="form-control" id="account" name="account" type="text">
+                                                <input class="form-control" id="account" name="account" type="text" value="${user.account!''}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="pwd" class="col-form-label"><code>*&nbsp;</code>密码</label>
-                                                <input class="form-control" id="pwd" name="pwd" type="password">
+                                                <input class="form-control" id="pwd" name="pwd" type="password" value="${user.pwd!''}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="rePwd" class="col-form-label"><code>*&nbsp;</code>确认密码</label>
-                                                <input class="form-control" id="rePwd" name="rePwd" type="password">
+                                                <input class="form-control" id="rePwd" name="rePwd" type="password" value="${user.pwd!''}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="nick" class="col-form-label"><code>*&nbsp;</code>昵称 <mark>以常用活动昵称为主</mark></label>
-                                                <input class="form-control" id="nick" name="nick" type="text">
+                                                <input class="form-control" id="nick" name="nick" type="text" value="${user.nick!''}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="account" class="col-form-label"><code>*&nbsp;</code>性别</label>
                                                 <div class="form-control" style="border: none;">
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="sex" id="sex1" value="1" checked>
+                                                        <input class="form-check-input" type="radio" name="sex" id="sex1" value="1" <#if user.sex==1>checked</#if>>
                                                         <label class="form-check-label" for="sex1">男</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="sex" id="sex2" value="2">
+                                                        <input class="form-check-input" type="radio" name="sex" id="sex2" value="2" <#if user.sex==2>checked</#if>>
                                                         <label class="form-check-label" for="sex2">女</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="avatar" class="col-form-label">头像</label>
-                                                <input type="file" class="form-control-file" id="avatar" name="avatar">
+                                                <input hidden title="avatarUrl" type="text" id="avatarUrl" name="avatarUrl" value="${user.avatar!''}">
+                                                <input type="file" class="form-control-file" id="avatar" name="avatar" value="${user.avatar!''}">
                                                 <div id="imgFilePreview">
+                                                    <#if user.avatar??>
+                                                        <img style="margin: 10px 0;width: 100px;height: 100px;max-width: 100%;" src="${user.avatar}"/>
+                                                        <div><button style="width: 100px;" type="button" class="btn btn-flat bg-secondary text-white" onclick="deleteSelectedImg()">删&nbsp;&nbsp;&nbsp;&nbsp;除</button></div>
+                                                    </#if>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="phone" class="col-form-label"><code>*&nbsp;</code>联系电话 <mark>请填写合法手机号</mark></label>
-                                                <input class="form-control" id="phone" name="phone" type="text">
+                                                <input class="form-control" id="phone" name="phone" type="text" value="${user.phone!''}">
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">提交</button>
                                         </form>
@@ -123,12 +72,9 @@
         </div>
         <!-- main content area end -->
 <script>
-    $(".user-add-btn").on("click", function () {
-        $("#userListDivRow").hide();
-        $("#userAddDivRow").show();
-    });
     //文件选择改变事件
     $("#avatar").change(function () {
+        $("#avatarUrl").val(null);
         var objUrl=getObjectURL(this.files[0]);
         var $preDiv=$("#imgFilePreview");
         $preDiv.empty();
@@ -139,6 +85,7 @@
     function deleteSelectedImg(){
         $("#imgFilePreview").empty();
         $("#avatar").val(null);
+        $("#avatarUrl").val(null);
     }
     //获取临时上传文件路径
     function getObjectURL(file){
@@ -153,7 +100,7 @@
         return url;
     }
     $(function () {
-        $('#userFormAdd').bootstrapValidator({
+        $('#userFormEdit').bootstrapValidator({
             message: 'This value is not valid',
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',

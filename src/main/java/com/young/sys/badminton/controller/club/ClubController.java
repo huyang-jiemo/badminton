@@ -8,6 +8,7 @@ import com.young.sys.badminton.service.ClubService;
 import com.young.sys.badminton.service.UserService;
 import com.young.sys.badminton.util.FileUploadUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,7 +61,9 @@ public class ClubController extends BaseController {
         club.setClubName(clubName);
         club.setClubUserId(clubUserId);
         club.setClubAddress(clubAddress);
-        club.setClubQqGroup(clubQqGroup);
+        if(!StringUtils.isEmpty(clubQqGroup)){
+            club.setClubQqGroup(clubQqGroup);
+        }
         club.setClubMemo(clubMemo);
         club.setClubLogo(FileUploadUtil.uploadFile(file, request, "club"));
         clubService.insert(club);
