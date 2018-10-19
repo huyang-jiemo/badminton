@@ -1,4 +1,4 @@
--- we don't know how to generate schema badminton (class Schema) :(
+-- we don't know how to generate schema Ug8QB4jc (class Schema) :(
 create table activity
 (
   id int auto_increment comment '主键id'
@@ -46,8 +46,10 @@ create table club
 
 create table `match`
 (
-  match_name varchar(100) null comment '比赛名称',
+  id int auto_increment comment '主键id'
+    primary key,
   club_id int null comment '俱乐部id',
+  match_name varchar(100) null comment '比赛名称',
   men_single int default '1' null comment '男单',
   women_single int default '1' null comment '女单',
   men_double int default '1' null comment '男双',
@@ -95,5 +97,3 @@ create table user
 )
   comment '后台用户表' engine=InnoDB CHARACTER SET utf8
 ;
-
-insert into user (account,nick,sex,phone,pwd,role) values ('admin','系统管理员',1,18607169044,'171415121310',1);
