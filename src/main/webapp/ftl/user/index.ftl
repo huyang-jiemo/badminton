@@ -13,7 +13,7 @@
                     <div class="col-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title" style="display: flex;justify-content: space-between;">人员管理<button class="btn btn-xs mt-3 btn-primary user-add-btn">添加</button></h4>
+                                <h4 class="header-title" style="display: flex;justify-content: space-between;">人员管理<button class="btn btn-xs btn-primary user-add-btn">添加</button></h4>
                                 <div class="single-table">
                                     <div class="table-responsive">
                                         <table class="table table-hover progress-table text-center">
@@ -31,7 +31,7 @@
                                             <tbody>
                                                 <#list userList as user>
                                                 <tr>
-                                                    <th scope="row">${user_index+1}</th>
+                                                    <th scope="row" width="100px;">${user_index+1}</th>
                                                     <td>
                                                         <#if user.avatar??>
                                                             <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="${user.avatar!''}" alt="image">

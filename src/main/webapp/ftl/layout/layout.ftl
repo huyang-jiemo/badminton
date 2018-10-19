@@ -4,7 +4,7 @@
         <head>
             <meta charset="utf-8">
             <meta http-equiv="x-ua-compatible" content="ie=edge">
-            <title>后台管理系统</title>
+            <title>相约羽球管理系统</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="shortcut icon" type="image/png" href="${ctx}/assets/images/icon/favicon.ico">
             <link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">

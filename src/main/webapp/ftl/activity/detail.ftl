@@ -8,7 +8,7 @@
                     <div class="col-lg-12 mt-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title" style="display: flex;justify-content: space-between;">活动详情<a href="/activity.do" class="btn btn-secondary btn-xs mt-3">返回活动列表</a></h4>
+                                <h4 class="header-title" style="display: flex;justify-content: space-between;">活动详情<a href="/activity.do" class="btn btn-secondary btn-xs">返回活动列表</a></h4>
                                 <div class="invoice-area">
                                     <div class="invoice-head">
                                         <div class="row" style="font-size: 15pt;">

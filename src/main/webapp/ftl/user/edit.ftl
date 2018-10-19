@@ -11,7 +11,7 @@
                             <div class="col-12 mt-5">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title" style="display: flex;justify-content: space-between;">修改人员信息<a href="/user/index.do" class="btn btn-secondary btn-xs mt-3 user-add-return-btn">取消并返回</a></h4>
+                                        <h4 class="header-title" style="display: flex;justify-content: space-between;">修改人员信息<a href="/user/index.do" class="btn btn-secondary btn-xs user-add-return-btn">取消并返回</a></h4>
                                         <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>人员信息请以俱乐部活动实际信息为准，联系方式如实填写，方便联系；信息一旦提交无法修改，请提交前详细核实。</p>
                                         <form id="userFormEdit" method="post" enctype="multipart/form-data" action="/user/saveUserEdit.do">
                                             <label hidden for="id"></label>
