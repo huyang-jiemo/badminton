@@ -8,40 +8,46 @@
                             <nav>
                                 <ul id="nav_menu">
                                     <li class="${(menu_index==0)?string('active','')}">
-                                        <a href="${ctx}/home.do"><i class="ti-home"></i> <span>首页</span></a>
+                                        <a href="/home.do"><i class="ti-home"></i> <span>首页</span></a>
                                         <!-- 系统管理员角色操作 -->
                                         <#if BADMINTON_GLOBAL_USER.role==1>
                                             <ul class="submenu">
-                                                <li><a href="${ctx}/user/index.do">人员管理</a></li>
+                                                <li><a href="/user/index.do">人员管理</a></li>
                                             </ul>
                                         </#if>
                                     </li>
                                     <li class="${(menu_index==1)?string('active','')}">
-                                        <a href="${ctx}/club.do"><i class="ti-flag-alt"></i> <span>俱乐部</span></a>
+                                        <a href="/club.do"><i class="ti-flag-alt"></i> <span>俱乐部</span></a>
                                         <!-- 系统管理员角色操作 -->
                                         <#if BADMINTON_GLOBAL_USER.role==1>
                                             <ul class="submenu">
-                                                <li><a href="${ctx}/club/clubAdd.do">创建俱乐部</a></li>
+                                                <li><a href="/club/clubAdd.do">创建俱乐部</a></li>
                                             </ul>
                                         </#if>
                                     </li>
                                     <li class="${(menu_index==2)?string('active','')}">
-                                        <a href="${ctx}/activity.do"><i class="ti-announcement"></i> <span>活动</span></a>
+                                        <a href="/activity.do"><i class="ti-announcement"></i> <span>活动</span></a>
                                         <!-- 系统管理员角色操作 -->
                                         <#if BADMINTON_GLOBAL_USER.role==1>
                                             <ul class="submenu">
-                                                <li><a href="${ctx}/activity/activityPublish.do">发布活动</a></li>
+                                                <li><a href="/activity/activityPublish.do">发布活动</a></li>
                                             </ul>
                                         </#if>
                                     </li>
                                     <li class="${(menu_index==3)?string('active','')}">
-                                        <a href="${ctx}/match.do"><i class="ti-cup"></i> <span>比赛</span></a>
+                                        <a href="/match.do"><i class="ti-cup"></i> <span>比赛</span></a>
+                                        <!-- 系统管理员角色操作 -->
+                                        <#if BADMINTON_GLOBAL_USER.role==1>
+                                            <ul class="submenu">
+                                                <li><a href="/match/organizeMatch.do">组织比赛</a></li>
+                                            </ul>
+                                        </#if>
                                     </li>
                                     <li class="${(menu_index==4)?string('active','')}">
-                                        <a href="${ctx}/news.do"><i class="ti-signal"></i> <span>资讯</span></a>
+                                        <a href="/news.do"><i class="ti-signal"></i> <span>资讯</span></a>
                                     </li>
-                                    <li class="${(menu_index==4)?string('active','')}">
-                                        <a href="${ctx}/share.do"><i class="ti-light-bulb"></i> <span>共享资源</span></a>
+                                    <li class="${(menu_index==5)?string('active','')}">
+                                        <a href="/share.do"><i class="ti-light-bulb"></i> <span>共享资源</span></a>
                                     </li>
                                 </ul>
                             </nav>
