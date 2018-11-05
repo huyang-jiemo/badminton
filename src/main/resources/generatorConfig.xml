@@ -9,12 +9,12 @@
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://212.64.23.221:3306/badminton?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/Ug8QB4jc?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="young666"/>
+                        password="huyang"/>
         <javaModelGenerator targetPackage="com.young.sys.badminton.domain" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources"/>
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.young.sys.badminton.dao" targetProject="src/main/java"/>
-        <table schema="" tableName="activity_member" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
+        <table schema="" tableName="match_enter" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

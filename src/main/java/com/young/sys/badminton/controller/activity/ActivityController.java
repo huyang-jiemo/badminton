@@ -34,7 +34,7 @@ public class ActivityController extends BaseController {
     @RequestMapping("/activity.do")
     public ModelAndView index(){
         ModelAndView mv = new ModelAndView();
-        List<ActivityModel> activityModelList = activityService.selectAllFutureActivityModel();
+        List<ActivityModel> activityModelList = activityService.selectAllActivityModel();
         mv.addObject("activityModelList",activityModelList);
         mv.setViewName("/activity/index");
         return mv;
@@ -59,8 +59,8 @@ public class ActivityController extends BaseController {
         Activity activity = new Activity();
         activity.setClubId(clubId);
         activity.setActivityDate(activityDate);
-        activity.setStartTime(startTime.substring(0,startTime.lastIndexOf(":")-1));
-        activity.setEndTime(endTime.substring(0,startTime.lastIndexOf(":")-1));
+        activity.setStartTime(startTime);
+        activity.setEndTime(endTime);
         activity.setLimitMember(limitMember);
         activity.setActivityAddress(activityAddress);
         activity.setActivityMemo(activityMemo);

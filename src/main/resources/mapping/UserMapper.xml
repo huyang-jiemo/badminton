@@ -23,6 +23,7 @@
         select *
         from user a
         where a.status = 1
+        order by id desc
     </select>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">

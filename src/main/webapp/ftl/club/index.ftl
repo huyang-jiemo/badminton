@@ -13,14 +13,14 @@
                                     <#if club.clubLogo??>
                                         <img style="width: 450px;height: 250px;" class="card-img-top img-fluid" src="${club.clubLogo!''}" alt="image">
                                     <#else>
-                                        <img style="width: 450px;height: 250px;" class="card-img-top img-fluid" src="${ctx}/assets/images/card/club1.jpg" alt="image">
+                                        <img style="width: 450px;height: 250px;" class="card-img-top img-fluid" src="/assets/images/card/club1.jpg" alt="image">
                                     </#if>
                                     <div class="card-body">
                                         <h5 class="title">${club.clubName!''}</h5>
                                         <p><code><i class="ti-map-alt"></i></code>&nbsp;&nbsp;&nbsp;<mark>${club.clubAddress!''}</mark></p>
                                         <p style="height: 60px;overflow: hidden;" class="card-text">${club.clubMemo!''}</p>
                                         <div class="form-row" style="display: flex;justify-content: space-between;align-items: center;">
-                                            <a href="${ctx}/club/seeClubMore.do?id=${club.id!''}" class="btn btn-xs btn-primary">详情</a>
+                                            <a href="/club/seeClubMore.do?id=${club.id!''}" class="btn btn-xs btn-primary">详情</a>
                                             <p><small>QQ群：${club.clubQqGroup!'无'}</small></p>
                                         </div>
                                     </div>

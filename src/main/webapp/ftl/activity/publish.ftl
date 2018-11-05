@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <h4 class="header-title" style="display: flex;justify-content: space-between;">发布活动<a href="/activity.do" class="btn btn-secondary btn-xs">取消并返回</a></h4>
                                 <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>注意核对活动俱乐部及活动组织者，活动时间请以整点或至少以半小时为单位，活动说明请尽可能详细。</p>
-                                <form id="activityFormAdd" method="post" enctype="multipart/form-data" action="${ctx}/activity/saveActivityAdd.do">
+                                <form id="activityFormAdd" method="post" enctype="multipart/form-data" action="/activity/saveActivityAdd.do">
                                     <div class="form-group">
                                         <label for="clubId" class="col-form-label"><code>*&nbsp;</code>俱乐部</label>
                                         <select class="custom-select" id="clubId" name="clubId">
@@ -24,11 +24,11 @@
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="startTime"><code>*&nbsp;</code>活动开始时间</label>
-                                            <input class="form-control" type="time" value="01:00:00" id="startTime" name="startTime">
+                                            <input class="form-control" type="time" value="08:00:00" id="startTime" name="startTime">
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="endTime"><code>*&nbsp;</code>活动结束时间</label>
-                                            <input class="form-control" type="time" value="23:00:00" id="endTime" name="endTime">
+                                            <input class="form-control" type="time" value="22:00:00" id="endTime" name="endTime">
                                         </div>
                                         <div class="col-md-3 mb-3">
                                             <label for="limitMember"><code>*&nbsp;</code>限报人数(<code>0表示无限制</code>)</label>

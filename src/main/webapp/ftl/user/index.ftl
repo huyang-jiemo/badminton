@@ -36,7 +36,7 @@
                                                         <#if user.avatar??>
                                                             <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="${user.avatar!''}" alt="image">
                                                         <#else>
-                                                            <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="${ctx}/assets/images/author/avatarHead.jpg" alt="image">
+                                                            <img style="width: 30px;height: 30px;border-radius: 50%" class="img-thumbnail" src="/assets/images/author/avatarHead.jpg" alt="image">
                                                         </#if>
                                                     </td>
                                                     <td>${user.account!''}</td>
@@ -71,7 +71,7 @@
                                     <div class="card-body">
                                         <h4 class="header-title" style="display: flex;justify-content: space-between;">添加人员<a href="/user/index.do" class="btn btn-secondary btn-xs mt-3 user-add-return-btn">取消并返回</a></h4>
                                         <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>人员信息请以俱乐部活动实际信息为准，联系方式如实填写，方便联系；信息一旦提交无法修改，请提交前详细核实。</p>
-                                        <form id="userFormAdd" method="post" enctype="multipart/form-data" action="${ctx}/user/saveUserAdd.do">
+                                        <form id="userFormAdd" method="post" enctype="multipart/form-data" action="/user/saveUserAdd.do">
                                             <div class="form-group">
                                                 <label for="account" class="col-form-label"><code>*&nbsp;</code>账号</label>
                                                 <input class="form-control" id="account" name="account" type="text">

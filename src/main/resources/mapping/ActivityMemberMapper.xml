@@ -16,6 +16,7 @@
         select *
         from activity_member
         where activity_id = #{activityId}
+        order by id desc
     </select>
 
     <insert id="insert" parameterType="com.young.sys.badminton.domain.ActivityMember">

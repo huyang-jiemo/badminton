@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <h4 class="header-title" style="display: flex;justify-content: space-between;">组织比赛<a href="/match.do" class="btn btn-secondary btn-xs">取消并返回</a></h4>
                                 <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>注意核对活动俱乐部及活动组织者，活动时间请以整点或至少以半小时为单位，活动说明请尽可能详细。</p>
-                                <form id="activityFormAdd" method="post" enctype="multipart/form-data" action="${ctx}/match/saveMatchAdd.do">
+                                <form id="activityFormAdd" method="post" action="/match/saveMatchAdd.do">
                                     <div class="form-group">
                                         <label for="clubId" class="col-form-label"><code>*&nbsp;</code>俱乐部</label>
                                         <select class="custom-select" id="clubId" name="clubId">
@@ -45,37 +45,36 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-12 mb-3">
-                                            <label><code>对阵类型(默认全部都有)</code></label>
+                                            <label><code>*&nbsp;</code>对阵类型（<code>默认全部都有</code>）</label>
                                             <div class="form-control border-0">
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" checked class="custom-control-input" id="menSingle" name="menSingle">
+                                                    <input type="checkbox" checked value="1" class="custom-control-input" id="menSingle" name="menSingle">
                                                     <label class="custom-control-label" for="menSingle">男单</label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" checked class="custom-control-input" id="womenSingle" name="womenSingle">
+                                                    <input type="checkbox" checked value="1" class="custom-control-input" id="womenSingle" name="womenSingle">
                                                     <label class="custom-control-label" for="womenSingle">女单</label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" checked class="custom-control-input" id="menDouble" name="menDouble">
+                                                    <input type="checkbox" checked value="1" class="custom-control-input" id="menDouble" name="menDouble">
                                                     <label class="custom-control-label" for="menDouble">男双</label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" checked class="custom-control-input" id="womenDouble" name="womenDouble">
+                                                    <input type="checkbox" checked value="1" class="custom-control-input" id="womenDouble" name="womenDouble">
                                                     <label class="custom-control-label" for="womenDouble">女双</label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox custom-control-inline">
-                                                    <input type="checkbox" checked class="custom-control-input" id="mixDouble" name="mixDouble">
+                                                    <input type="checkbox" checked value="1" class="custom-control-input" id="mixDouble" name="mixDouble">
                                                     <label class="custom-control-label" for="mixDouble">混双</label>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="matchMemo" class="col-form-label"><code>*&nbsp;</code>比赛介绍及说明</label>
                                         <textarea class="form-control" rows="10" id="matchMemo" name="matchMemo" required placeholder="请填写比赛介绍及说明、比赛须知、规则、要求等..."></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">提交</button>
+                                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">发布</button>
                                 </form>
                             </div>
                         </div>

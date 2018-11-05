@@ -13,7 +13,7 @@
                                     <#if user.avatar??>
                                         <img style="width: 80px;height: 80px;" class="mr-4 img-thumbnail" src="${user.avatar!''}" alt="image">
                                     <#else>
-                                        <img style="width: 80px;height: 80px;" class="mr-4 img-thumbnail" src="${ctx}/assets/images/author/avatarHead.jpg" alt="image">
+                                        <img style="width: 80px;height: 80px;" class="mr-4 img-thumbnail" src="/assets/images/author/avatarHead.jpg" alt="image">
                                     </#if>
                                     <div class="media-body">
                                         <p><code>会长：</code>${user.nick!''}</p>
@@ -45,7 +45,7 @@
                                         <#if club.clubLogo??>
                                             <img style="max-width: 80%;max-height: 500px;" class="card-img-top img-thumbnail" src="${club.clubLogo!''}" alt="image">
                                         <#else>
-                                            <img style="max-width: 80%;max-height: 500px;" class="card-img-top img-thumbnail" src="${ctx}/assets/images/card/club1.jpg" alt="image">
+                                            <img style="max-width: 80%;max-height: 500px;" class="card-img-top img-thumbnail" src="/assets/images/card/club1.jpg" alt="image">
                                         </#if>
                                     </div>
                                 </div>

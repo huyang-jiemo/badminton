@@ -65,6 +65,20 @@ create table `match`
   comment '比赛表' engine=InnoDB CHARACTER SET utf8
 ;
 
+create table match_enter
+(
+  id int auto_increment comment '主键id'
+    primary key,
+  match_id int null comment '比赛id',
+  nick varchar(50) null comment '昵称',
+  sex int null comment '性别(1-男；2-女)',
+  phone varchar(20) null comment '电话',
+  match_type int null comment '类型：1-男单；2-女单；3-男双；4-女双；5-混双',
+  status int default '1' comment '状态'
+)
+  comment '比赛报名表' engine=InnoDB CHARACTER SET utf8
+;
+
 create table match_member
 (
   id int auto_increment comment '主键id'

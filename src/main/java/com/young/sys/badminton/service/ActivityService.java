@@ -64,9 +64,27 @@ public class ActivityService {
         activityMapper.deleteById(id);
     }
 
+    public List<ActivityModel> selectAllActivityModel(){
+        return this.translateToModel(activityMapper.selectAll());
+    }
+
     public List<ActivityModel> selectAllFutureActivityModel(){
+        return this.translateToModel(activityMapper.selectAllFuture());
+    }
+
+    public ActivityModel selectActivityModelById(Integer id){
+        Activity activity = activityMapper.selectById(id);
+        ActivityModel activityModel = new ActivityModel();
+        activityModel.setActivity(activity);
+        Club club = clubMapper.selectById(activity.getClubId());
+        activityModel.setClub(club);
+        activityModel.setUser(userMapper.selectById(club.getClubUserId()));
+        activityModel.setActivityMemberList(activityMemberMapper.selectByActivityId(activity.getId()));
+        return activityModel;
+    }
+
+    private List<ActivityModel> translateToModel(List<Activity> activityList){
         List<ActivityModel> activityModelList = new ArrayList<>();
-        List<Activity> activityList = activityMapper.selectAllFuture();
         if(activityList!=null&&activityList.size()>0){
             for(Activity activity:activityList){
                 ActivityModel activityModel = new ActivityModel();
@@ -79,16 +97,5 @@ public class ActivityService {
             }
         }
         return activityModelList;
-    }
-
-    public ActivityModel selectActivityModelById(Integer id){
-        Activity activity = activityMapper.selectById(id);
-        ActivityModel activityModel = new ActivityModel();
-        activityModel.setActivity(activity);
-        Club club = clubMapper.selectById(activity.getClubId());
-        activityModel.setClub(club);
-        activityModel.setUser(userMapper.selectById(club.getClubUserId()));
-        activityModel.setActivityMemberList(activityMemberMapper.selectByActivityId(activity.getId()));
-        return activityModel;
     }
 }

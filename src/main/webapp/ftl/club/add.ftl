@@ -18,7 +18,7 @@
                                 <div class="card-body">
                                     <h4 class="header-title" style="display: flex;justify-content: space-between;">创建俱乐部<a href="/club.do" class="btn btn-secondary btn-xs">取消并返回</a></h4>
                                     <p class="font-14 mb-4 list-group-item list-group-item-warning"><i class="ti-light-bulb"></i>请尽可能详细的完善俱乐部信息，创建后可发布活动、比赛等。</p>
-                                    <form class="needs-validation" id="clubFormAdd" method="post" enctype="multipart/form-data" action="${ctx}/club/saveClubAdd.do">
+                                    <form class="needs-validation" id="clubFormAdd" method="post" enctype="multipart/form-data" action="/club/saveClubAdd.do">
                                         <div class="form-group">
                                             <div class="form-group">
                                                 <label for="clubUserId" class="col-form-label btn btn-xs btn-flat btn-secondary user-select-btn"><code>*&nbsp;</code>选择俱乐部会长</label>

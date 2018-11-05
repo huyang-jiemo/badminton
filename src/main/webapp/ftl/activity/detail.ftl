@@ -106,7 +106,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <form id="activityFormApply" method="post" enctype="multipart/form-data" action="${ctx}/activity/saveActivityMemberApply.do">
+                            <form id="activityFormApply" method="post" enctype="multipart/form-data" action="/activity/saveActivityMemberApply.do">
                                 <label for="activityId" hidden><code>*&nbsp;</code>性别</label>
                                 <input hidden id="activityId" name="activityId" value="${activityModel.activity.id!''}">
                                 <div class="form-row">

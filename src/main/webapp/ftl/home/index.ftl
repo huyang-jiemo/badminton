@@ -179,7 +179,7 @@
                                 <div class="testimonial-carousel owl-carousel">
                                     <div class="tst-item">
                                         <div class="tstu-img">
-                                            <img src="${ctx}/assets/images/team/team-author1.jpg" alt="author image">
+                                            <img src="/assets/images/team/team-author1.jpg" alt="author image">
                                         </div>
                                         <div class="tstu-content">
                                             <h4 class="tstu-name">Abel Franecki</h4>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="tst-item">
                                         <div class="tstu-img">
-                                            <img src="${ctx}/assets/images/team/team-author2.jpg" alt="author image">
+                                            <img src="/assets/images/team/team-author2.jpg" alt="author image">
                                         </div>
                                         <div class="tstu-content">
                                             <h4 class="tstu-name">Abel Franecki</h4>
@@ -201,7 +201,7 @@
                                     </div>
                                     <div class="tst-item">
                                         <div class="tstu-img">
-                                            <img src="${ctx}/assets/images/team/team-author3.jpg" alt="author image">
+                                            <img src="/assets/images/team/team-author3.jpg" alt="author image">
                                         </div>
                                         <div class="tstu-content">
                                             <h4 class="tstu-name">Abel Franecki</h4>

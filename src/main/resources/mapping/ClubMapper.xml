@@ -16,6 +16,7 @@
         select *
         from club
         where status = 1
+        order by id desc
     </select>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
