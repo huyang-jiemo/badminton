@@ -22,6 +22,8 @@
             <mvc:exclude-mapping path="/login.do"/>
             <mvc:exclude-mapping path="/index.do"/>
             <mvc:exclude-mapping path="/logout.do"/>
+            <!-- 接口请求不拦截 -->
+            <mvc:exclude-mapping path="/api/**"/>
             <bean class="com.young.sys.badminton.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

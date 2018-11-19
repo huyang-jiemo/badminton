@@ -52,6 +52,13 @@
         where status = 1 and id = #{id}
     </select>
 
+    <select id="selectByDate" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select *
+        from activity
+        where status = 1 and activity_date = #{date}
+        order by start_time asc
+    </select>
+
     <insert id="insert" parameterType="com.young.sys.badminton.domain.Activity">
         insert into activity (club_id, activity_date,
                               start_time, end_time, limit_member,

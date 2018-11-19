@@ -14,6 +14,8 @@ public interface ActivityMapper {
     
     List<Activity> selectByClubId(Integer clubId);
 
+    List<Activity> selectByDate(String date);
+
     Activity selectById(Integer id);
 
     void insert(Activity activity);

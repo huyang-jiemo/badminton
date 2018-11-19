@@ -286,7 +286,7 @@ public class PasswordUtil {
     }
 
     public static void main(String[] args) {
-        String key = PasswordUtil.getInstance().XORencode("123456",Constant.KEY_CODE);
+        String key = PasswordUtil.getInstance().XORencode("young666",Constant.KEY_CODE);
         System.out.println(key);
     }
 }
