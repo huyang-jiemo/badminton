@@ -106,4 +106,10 @@
         set status = -1
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectThisWeekByClub" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from activity
+        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) = YEARWEEK(now()) and club_id = #{clubId}
+    </select>
 </mapper>

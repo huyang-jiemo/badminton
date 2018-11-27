@@ -24,4 +24,10 @@ public class ClubApi extends BaseApi{
     public AjaxResult query(){
         return successData(clubService.selectAll());
     }
+
+    @RequestMapping("/queryById.do")
+    @ResponseBody
+    public AjaxResult queryById(Integer id){
+        return successData(clubService.selectApiModelById(id));
+    }
 }

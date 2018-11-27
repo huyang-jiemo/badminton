@@ -23,4 +23,6 @@ public interface ActivityMapper {
     void update(Activity activity);
 
     void deleteById(Integer id);
+
+    List<Activity> selectThisWeekByClub(Integer clubId);
 }
