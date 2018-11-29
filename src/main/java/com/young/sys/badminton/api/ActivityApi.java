@@ -27,7 +27,8 @@ public class ActivityApi extends BaseApi{
     @RequestMapping("/query.do")
     @ResponseBody
     public AjaxResult query(String date){
-        String queryDate = date.replace("/","-");
+        String[] dateArray = date.split("/");
+        String queryDate = translate(dateArray[0])+"-"+translate(dateArray[1])+"-"+translate(dateArray[2]);
         return successData(activityService.selectApiModelByDate(queryDate));
     }
 
@@ -42,5 +43,13 @@ public class ActivityApi extends BaseApi{
     public AjaxResult apply(ActivityMember activityMember){
         activityMemberService.insert(activityMember);
         return success();
+    }
+
+    private static String translate(String dateStr){
+        if(Integer.parseInt(dateStr)<10){
+            return "0"+dateStr;
+        }else{
+            return dateStr;
+        }
     }
 }
