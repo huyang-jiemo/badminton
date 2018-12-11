@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="additional-content">
-                                <div class="alert alert-danger" role="alert">
+                                <div class="alert alert-warning" role="alert">
                                     <h4 class="alert-heading">暂无俱乐部信息!</h4>
                                     <hr>
                                     <p>如需创建自己的俱乐部，请联系系统管理员创建！</p>

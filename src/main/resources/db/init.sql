@@ -161,29 +161,34 @@ create table match_member
 
 create table user
 (
-  id      int auto_increment
+  id       int auto_increment
   comment '主键id'
     primary key,
-  account varchar(50)     null
+  openid   varchar(255)    null
+  comment 'openid',
+  account  varchar(50)     null
   comment '账号',
-  nick    varchar(100)    null
+  nick     varchar(100)    null
   comment '昵称',
-  sex     int default '1' null
+  sex      int default '0' null
   comment '性别(0-未知;1-男;2-女)',
-  phone   bigint          null
+  phone    bigint          null
   comment '手机号',
-  avatar  varchar(255)    null
+  avatar   varchar(255)    null
   comment '头像',
-  pwd     varchar(50)     null
+  pwd      varchar(50)     null
   comment '秘钥',
-  role    int default '0' null
+  role     int default '0' null
   comment '角色(0-用户;1-系统管理员)',
-  status  int default '1' null
+  province varchar(50)     null
+  comment '省份',
+  city     varchar(50)     null
+  comment '城市',
+  status   int default '1' null
   comment '状态(1-正常;-1-失效)'
 )
   comment '后台用户表'
   engine = InnoDB
   CHARACTER SET utf8;
 
-insert into user (account, nick, sex, phone, avatar, pwd, role)
-values ('huyang', '芥末不是末', 1, '18607169044', null, '5F49534841101010', 1);
+insert into user (account,nick,sex,phone,pwd,role) values ('admin','系统管理员',1,'18607169044','5F49534841101010',1);

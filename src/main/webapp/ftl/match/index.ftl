@@ -67,7 +67,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="additional-content">
-                                    <div class="alert alert-danger" role="alert">
+                                    <div class="alert alert-warning" role="alert">
                                         <h4 class="alert-heading">暂无比赛信息!</h4>
                                         <hr>
                                     </div>

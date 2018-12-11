@@ -1,6 +1,8 @@
 package com.young.sys.badminton.model;
 
 public class Constant {
+    public static final String DEFAULT_PWD="young666";
+
     public static final String KEY_CODE="BADMINTON_KEY_CODE";
 
     public static final String SESSION_KEY="BADMINTON_GLOBAL_USER";

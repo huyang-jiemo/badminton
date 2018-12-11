@@ -10,6 +10,8 @@
         <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
         <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
         <result column="role" property="role" jdbcType="INTEGER"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
     </resultMap>
 
@@ -17,6 +19,12 @@
         select *
         from user
         where account = #{account,jdbcType=VARCHAR} and status = 1
+    </select>
+
+    <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select *
+        from user
+        where openid = #{openid,jdbcType=VARCHAR} and status = 1
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
@@ -34,22 +42,25 @@
 
     <insert id="insert" parameterType="com.young.sys.badminton.domain.User">
         insert into user
-        (account, nick, sex, phone, avatar, pwd, role)
+        (openid, account, nick, sex, phone, avatar, pwd, role, province, city)
         values
-            (#{account,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT},
-             #{avatar,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER})
+            (#{openid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT},
+             #{avatar,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER},
+             #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
     </insert>
 
     <update id="update" parameterType="com.young.sys.badminton.domain.User">
         update user
-        set account = #{account,jdbcType=VARCHAR},
-            nick    = #{nick,jdbcType=VARCHAR},
-            sex     = #{sex,jdbcType=INTEGER},
-            phone   = #{phone,jdbcType=BIGINT},
-            avatar  = #{avatar,jdbcType=VARCHAR},
-            pwd     = #{pwd,jdbcType=VARCHAR},
-            role    = #{role,jdbcType=INTEGER},
-            status  = #{status,jdbcType=INTEGER}
+        set account  = #{account,jdbcType=VARCHAR},
+            nick     = #{nick,jdbcType=VARCHAR},
+            sex      = #{sex,jdbcType=INTEGER},
+            phone    = #{phone,jdbcType=BIGINT},
+            avatar   = #{avatar,jdbcType=VARCHAR},
+            pwd      = #{pwd,jdbcType=VARCHAR},
+            role     = #{role,jdbcType=INTEGER},
+            province = #{province,jdbcType=VARCHAR},
+            city     = #{city,jdbcType=VARCHAR},
+            status   = #{status,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

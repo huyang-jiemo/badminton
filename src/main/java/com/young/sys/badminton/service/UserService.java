@@ -21,6 +21,10 @@ public class UserService {
         return userMapper.selectByAccount(account);
     }
 
+    public User selectByOpenid(String openid){
+        return userMapper.selectByOpenid(openid);
+    }
+
     public List<User> selectAll() {
         return userMapper.selectAll();
     }

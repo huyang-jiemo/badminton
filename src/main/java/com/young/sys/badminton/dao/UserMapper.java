@@ -8,6 +8,8 @@ public interface UserMapper {
 
     User selectByAccount(String account);
 
+    User selectByOpenid(String openid);
+
     List<User> selectAll();
 
     User selectById(Integer id);

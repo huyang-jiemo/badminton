@@ -3,6 +3,8 @@ package com.young.sys.badminton.domain;
 public class User {
     private Integer id;
 
+    private String openid;
+
     private String account;
 
     private String nick;
@@ -17,6 +19,10 @@ public class User {
 
     private Integer role;
 
+    private String province;
+
+    private String city;
+
     private Integer status;
 
     public Integer getId() {
@@ -25,6 +31,14 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public String getAccount() {
@@ -89,5 +103,21 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
