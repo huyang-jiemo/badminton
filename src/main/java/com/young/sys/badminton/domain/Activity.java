@@ -1,6 +1,7 @@
 package com.young.sys.badminton.domain;
 
 public class Activity {
+
     private Integer id;
 
     private Integer clubId;

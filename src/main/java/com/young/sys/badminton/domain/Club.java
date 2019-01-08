@@ -1,11 +1,12 @@
 package com.young.sys.badminton.domain;
 
 public class Club {
+
     private Integer id;
 
     private String clubName;
 
-    private Integer clubUserId;
+    private Integer userId;
 
     private String clubLogo;
 
@@ -13,7 +14,7 @@ public class Club {
 
     private String clubAddress;
 
-    private String clubQqGroup;
+    private String clubPhone;
 
     private Integer status;
 
@@ -33,12 +34,12 @@ public class Club {
         this.clubName = clubName;
     }
 
-    public Integer getClubUserId() {
-        return clubUserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setClubUserId(Integer clubUserId) {
-        this.clubUserId = clubUserId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getClubLogo() {
@@ -65,12 +66,12 @@ public class Club {
         this.clubAddress = clubAddress;
     }
 
-    public String getClubQqGroup() {
-        return clubQqGroup;
+    public String getClubPhone() {
+        return clubPhone;
     }
 
-    public void setClubQqGroup(String clubQqGroup) {
-        this.clubQqGroup = clubQqGroup;
+    public void setClubPhone(String clubPhone) {
+        this.clubPhone = clubPhone;
     }
 
     public Integer getStatus() {

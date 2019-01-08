@@ -3,23 +3,13 @@
 <mapper namespace="com.young.sys.badminton.dao.UserMapper">
     <resultMap id="BaseResultMap" type="com.young.sys.badminton.domain.User">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
         <result column="nick" property="nick" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="INTEGER"/>
-        <result column="phone" property="phone" jdbcType="BIGINT"/>
         <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
-        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
         <result column="role" property="role" jdbcType="INTEGER"/>
-        <result column="province" property="province" jdbcType="VARCHAR"/>
-        <result column="city" property="city" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
     </resultMap>
-
-    <select id="selectByAccount" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select *
-        from user
-        where account = #{account,jdbcType=VARCHAR} and status = 1
-    </select>
 
     <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
         select *
@@ -29,38 +19,32 @@
 
     <select id="selectAll" resultMap="BaseResultMap">
         select *
-        from user a
-        where a.status = 1
-        order by id desc
+        from user
+        where status = 1
+        order by id asc
     </select>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
-        from user a
-        where a.status = 1 and a.id = #{id,jdbcType=INTEGER}
+        from user
+        where status = 1 and id = #{id,jdbcType=INTEGER}
     </select>
 
     <insert id="insert" parameterType="com.young.sys.badminton.domain.User">
         insert into user
-        (openid, account, nick, sex, phone, avatar, pwd, role, province, city)
+        (openid, nick, sex, avatar, role)
         values
-            (#{openid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT},
-             #{avatar,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER},
-             #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR})
+            (#{openid,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR},
+             #{role,jdbcType=INTEGER})
     </insert>
 
     <update id="update" parameterType="com.young.sys.badminton.domain.User">
         update user
-        set account  = #{account,jdbcType=VARCHAR},
-            nick     = #{nick,jdbcType=VARCHAR},
-            sex      = #{sex,jdbcType=INTEGER},
-            phone    = #{phone,jdbcType=BIGINT},
-            avatar   = #{avatar,jdbcType=VARCHAR},
-            pwd      = #{pwd,jdbcType=VARCHAR},
-            role     = #{role,jdbcType=INTEGER},
-            province = #{province,jdbcType=VARCHAR},
-            city     = #{city,jdbcType=VARCHAR},
-            status   = #{status,jdbcType=INTEGER}
+        set nick   = #{nick,jdbcType=VARCHAR},
+            sex    = #{sex,jdbcType=INTEGER},
+            avatar = #{avatar,jdbcType=VARCHAR},
+            role   = #{role,jdbcType=INTEGER},
+            status = #{status,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -69,4 +53,33 @@
         set status = -1
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectUserStat" resultType="com.young.sys.badminton.model.UserStatModel" parameterType="java.lang.Integer">
+        <![CDATA[
+        select
+            (select count(1)
+             from activity_apply_member
+             where user_id = #{userId}) as activityCount,
+            d.rankLevel,
+            d.activityTime
+        from (
+                 select
+                     (@i := @i + 1) AS rankLevel,
+                     c.userId,
+                     c.activityTime
+                 from (
+                          select
+                              a.user_id as userId,
+                              ifnull(
+                                      sum(timestampdiff(minute, concat(activity_date, ' ', start_time),
+                                                        concat(activity_date, ' ', end_time))),
+                                      0)    as activityTime
+                          from activity_apply_member a left join activity b on a.activity_id = b.id
+                          group by a.user_id
+                      ) c, (SELECT @i := 0) AS it
+                 order by activityTime desc
+             ) d
+        where d.userId = #{userId}
+        ]]>
+    </select>
 </mapper>

@@ -8,13 +8,7 @@ public interface ActivityMapper {
 
     List<Activity> selectAll();
 
-    List<Activity> selectAllPast();
-    
-    List<Activity> selectAllFuture();
-    
     List<Activity> selectByClubId(Integer clubId);
-
-    List<Activity> selectByDate(String date);
 
     Activity selectById(Integer id);
 
@@ -24,5 +18,9 @@ public interface ActivityMapper {
 
     void deleteById(Integer id);
 
-    List<Activity> selectThisWeekByClub(Integer clubId);
+    List<Activity> selectAllThisWeek();
+
+    List<Activity> selectPast();
+
+    List<Activity> selectMinePastActivity(Integer userId);
 }

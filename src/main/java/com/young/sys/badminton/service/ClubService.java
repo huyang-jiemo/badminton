@@ -1,15 +1,16 @@
 package com.young.sys.badminton.service;
 
-import com.young.sys.badminton.dao.ActivityMapper;
 import com.young.sys.badminton.dao.ClubMapper;
+import com.young.sys.badminton.dao.ClubMemberMapper;
 import com.young.sys.badminton.dao.UserMapper;
-import com.young.sys.badminton.domain.Activity;
 import com.young.sys.badminton.domain.Club;
+import com.young.sys.badminton.domain.ClubMember;
 import com.young.sys.badminton.domain.User;
-import com.young.sys.badminton.model.ClubApiModel;
+import com.young.sys.badminton.model.ClubModel;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class ClubService {
     private UserMapper userMapper;
 
     @Resource
-    private ActivityMapper activityMapper;
+    private ClubMemberMapper clubMemberMapper;
 
     public List<Club> selectAll(){
         return clubMapper.selectAll();
@@ -34,6 +35,10 @@ public class ClubService {
 
     public Club selectById(Integer id){
         return clubMapper.selectById(id);
+    }
+
+    public Club selectByUserId(Integer userId){
+        return clubMapper.selectByUserId(userId);
     }
 
     public void insert(Club club){
@@ -48,15 +53,40 @@ public class ClubService {
         clubMapper.deleteById(id);
     }
 
-    public ClubApiModel selectApiModelById(Integer id){
-        ClubApiModel clubApiModel = new ClubApiModel();
+    public ClubModel selectModelById(Integer id){
         Club club = clubMapper.selectById(id);
-        clubApiModel.setClub(club);
-        User user = userMapper.selectById(club.getClubUserId());
-        clubApiModel.setUser(user);
-        //本周活动
-        List<Activity> activityList = activityMapper.selectThisWeekByClub(club.getId());
-        clubApiModel.setActivityList(activityList);
-        return clubApiModel;
+        User user = userMapper.selectById(club.getUserId());
+        List<ClubMember> clubMemberlist = clubMemberMapper.selectByClubId(club.getId());
+        ClubModel clubModel = new ClubModel();
+        clubModel.setUser(user);
+        clubModel.setClub(club);
+        clubModel.setClubMemberList(clubMemberlist);
+        return clubModel;
+    }
+
+    public ClubModel selectModelByUserId(Integer userId){
+        Club club = clubMapper.selectByUserId(userId);
+        if(club!=null){
+            User user = userMapper.selectById(userId);
+            List<ClubMember> clubMemberlist = clubMemberMapper.selectByClubId(club.getId());
+            ClubModel clubModel = new ClubModel();
+            clubModel.setUser(user);
+            clubModel.setClub(club);
+            clubModel.setClubMemberList(clubMemberlist);
+            return clubModel;
+        }else{
+            return null;
+        }
+    }
+
+    public List<ClubModel> selectAllClubModel(){
+        List<ClubModel> clubModelList = new ArrayList<>();
+        List<Club> clubList = clubMapper.selectAll();
+        if(clubList!=null&&clubList.size()>0){
+            for(Club club : clubList){
+                clubModelList.add(selectModelById(club.getId()));
+            }
+        }
+        return clubModelList;
     }
 }

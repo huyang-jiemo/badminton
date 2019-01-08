@@ -8,7 +8,7 @@ import com.young.sys.badminton.model.Constant;
  * // TODO: 2018/11/10 基础api
  */
 public abstract class BaseApi {
-    protected <T> AjaxResult successData(T data){
+    <T> AjaxResult successData(T data){
         AjaxResult result=new AjaxResult();
         result.setCode(Constant.SUCCESS_CODE);
         result.setData(data);

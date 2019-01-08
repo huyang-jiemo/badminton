@@ -2,6 +2,7 @@ package com.young.sys.badminton.service;
 
 import com.young.sys.badminton.dao.UserMapper;
 import com.young.sys.badminton.domain.User;
+import com.young.sys.badminton.model.UserStatModel;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,10 +17,6 @@ public class UserService {
 
     @Resource
     private UserMapper userMapper;
-
-    public User selectByAccount(String account) {
-        return userMapper.selectByAccount(account);
-    }
 
     public User selectByOpenid(String openid){
         return userMapper.selectByOpenid(openid);
@@ -43,5 +40,9 @@ public class UserService {
 
     public void deleteById(Integer id) {
         userMapper.deleteById(id);
+    }
+
+    public UserStatModel selectUserStat(Integer userId){
+        return userMapper.selectUserStat(userId);
     }
 }

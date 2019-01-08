@@ -2,10 +2,10 @@ package com.young.sys.badminton.model;
 
 import java.io.Serializable;
 
+
 public class AjaxResult<T> implements Serializable {
 
     private static final long serialVersionUID = 80629816069662096L;
-
     private String message;
 
     private T data;

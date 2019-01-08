@@ -1,12 +1,11 @@
 package com.young.sys.badminton.dao;
 
 import com.young.sys.badminton.domain.User;
+import com.young.sys.badminton.model.UserStatModel;
 
 import java.util.List;
 
 public interface UserMapper {
-
-    User selectByAccount(String account);
 
     User selectByOpenid(String openid);
 
@@ -19,4 +18,6 @@ public interface UserMapper {
     void update(User user);
 
     void deleteById(Integer id);
+
+    UserStatModel selectUserStat(Integer userId);
 }

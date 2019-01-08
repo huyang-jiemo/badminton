@@ -1,18 +1,15 @@
 package com.young.sys.badminton.model;
 
-import com.young.sys.badminton.domain.Activity;
 import com.young.sys.badminton.domain.Club;
+import com.young.sys.badminton.domain.ClubMember;
 import com.young.sys.badminton.domain.User;
 
-import java.util.List;
-
-public class ClubApiModel {
-
+public class ClubMemberModel {
     private Club club;
 
     private User user;
 
-    List<Activity> activityList;
+    private ClubMember clubMember;
 
     public Club getClub() {
         return club;
@@ -30,11 +27,11 @@ public class ClubApiModel {
         this.user = user;
     }
 
-    public List<Activity> getActivityList() {
-        return activityList;
+    public ClubMember getClubMember() {
+        return clubMember;
     }
 
-    public void setActivityList(List<Activity> activityList) {
-        this.activityList = activityList;
+    public void setClubMember(ClubMember clubMember) {
+        this.clubMember = clubMember;
     }
 }

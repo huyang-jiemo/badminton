@@ -10,6 +10,8 @@ public interface ClubMapper {
 
     Club selectById(Integer id);
 
+    Club selectByUserId(Integer userId);
+
     void insert(Club club);
 
     void update(Club club);

@@ -21,24 +21,6 @@
         order by id desc
     </select>
 
-    <select id="selectAllPast" resultMap="BaseResultMap">
-        <![CDATA[
-        select *
-        from activity
-        where status = 1 and activity_date < date_format(now(), '%Y-%m-%d')
-        order by id desc
-        ]]>
-    </select>
-
-    <select id="selectAllFuture" resultMap="BaseResultMap">
-        <![CDATA[
-        select *
-        from activity
-        where status = 1 and activity_date >= date_format(now(), '%Y-%m-%d')
-        order by id desc
-        ]]>
-    </select>
-
     <select id="selectByClubId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from activity
@@ -50,13 +32,6 @@
         select *
         from activity
         where status = 1 and id = #{id}
-    </select>
-
-    <select id="selectByDate" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select *
-        from activity
-        where status = 1 and activity_date = #{date}
-        order by start_time asc
     </select>
 
     <insert id="insert" parameterType="com.young.sys.badminton.domain.Activity">
@@ -107,9 +82,28 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectThisWeekByClub" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectAllThisWeek" resultMap="BaseResultMap">
         select *
         from activity
-        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) = YEARWEEK(now()) and club_id = #{clubId}
+        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) = YEARWEEK(now())
+        order by activity_date desc, start_time desc, end_time desc
+    </select>
+
+    <select id="selectPast" resultMap="BaseResultMap">
+        <![CDATA[
+        select *
+        from activity
+        where status = 1 and activity_date < date_format(now(), '%Y-%m-%d')
+        order by activity_date desc, start_time desc, end_time desc
+        ]]>
+    </select>
+
+    <select id="selectMinePastActivity" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from activity
+        where id in (select activity_id
+                     from activity_apply_member
+                     where user_id = #{userId})
+        order by activity_date desc, start_time desc, end_time desc
     </select>
 </mapper>

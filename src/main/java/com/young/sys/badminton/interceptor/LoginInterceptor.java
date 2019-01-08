@@ -32,8 +32,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }else{
             //校验session是否合法有效
-            User findUser=userService.selectByAccount(user.getAccount());
-            if(ObjectUtils.isEmpty(findUser)||!findUser.getPwd().equals(user.getPwd())){
+            User findUser=userService.selectByOpenid(user.getOpenid());
+            if(ObjectUtils.isEmpty(findUser)||!findUser.getOpenid().equals(user.getOpenid())){
                 //非法token跳转登录页
                 httpServletResponse.sendRedirect("/login.do");
                 return false;

@@ -1,27 +1,18 @@
 package com.young.sys.badminton.domain;
 
 public class User {
+
     private Integer id;
 
     private String openid;
-
-    private String account;
 
     private String nick;
 
     private Integer sex;
 
-    private Long phone;
-
     private String avatar;
 
-    private String pwd;
-
     private Integer role;
-
-    private String province;
-
-    private String city;
 
     private Integer status;
 
@@ -41,14 +32,6 @@ public class User {
         this.openid = openid;
     }
 
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
     public String getNick() {
         return nick;
     }
@@ -65,28 +48,12 @@ public class User {
         this.sex = sex;
     }
 
-    public Long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Long phone) {
-        this.phone = phone;
-    }
-
     public String getAvatar() {
         return avatar;
     }
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
     }
 
     public Integer getRole() {
@@ -103,21 +70,5 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 }
