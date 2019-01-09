@@ -61,23 +61,23 @@
              from activity_apply_member
              where user_id = #{userId}) as activityCount,
             d.rankLevel,
-            d.activityTime
+            d.totalTime
         from (
                  select
                      (@i := @i + 1) AS rankLevel,
                      c.userId,
-                     c.activityTime
+                     c.totalTime
                  from (
                           select
                               a.user_id as userId,
                               ifnull(
                                       sum(timestampdiff(minute, concat(activity_date, ' ', start_time),
                                                         concat(activity_date, ' ', end_time))),
-                                      0)    as activityTime
+                                      0)    as totalTime
                           from activity_apply_member a left join activity b on a.activity_id = b.id
                           group by a.user_id
                       ) c, (SELECT @i := 0) AS it
-                 order by activityTime desc
+                 order by totalTime desc
              ) d
         where d.userId = #{userId}
         ]]>

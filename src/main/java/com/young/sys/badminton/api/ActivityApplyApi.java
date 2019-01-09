@@ -27,10 +27,9 @@ public class ActivityApplyApi extends BaseApi{
         return success();
     }
 
-    @RequestMapping("/selectApplyMember.do")
+    @RequestMapping("/selectApplyMemberModel.do")
     @ResponseBody
-    public AjaxResult selectApplyMember(Integer activityId) {
-        activityApplyMemberService.selectByActivityId(activityId);
-        return success();
+    public AjaxResult selectApplyMemberModel(Integer activityId) {
+        return successData(activityApplyMemberService.selectApplyMemberModel(activityId));
     }
 }
