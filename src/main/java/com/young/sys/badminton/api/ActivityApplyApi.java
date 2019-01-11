@@ -32,4 +32,11 @@ public class ActivityApplyApi extends BaseApi{
     public AjaxResult selectApplyMemberModel(Integer activityId) {
         return successData(activityApplyMemberService.selectApplyMemberModel(activityId));
     }
+
+    @RequestMapping("/cancelApply.do")
+    @ResponseBody
+    public AjaxResult cancelApply(Integer activityId,Integer userId) {
+        activityApplyMemberService.cancelApply(activityId,userId);
+        return success();
+    }
 }

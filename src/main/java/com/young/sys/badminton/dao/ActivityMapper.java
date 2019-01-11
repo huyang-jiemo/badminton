@@ -23,4 +23,6 @@ public interface ActivityMapper {
     List<Activity> selectPast();
 
     List<Activity> selectMinePastActivity(Integer userId);
+
+    List<Activity> selectMineApplyActivity(Integer userId);
 }

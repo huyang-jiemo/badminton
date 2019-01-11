@@ -15,6 +15,12 @@
         where status = 1 and club_id = #{clubId}
     </select>
 
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from club_member
+        where status = 1 and id = #{id}
+    </select>
+
     <insert id="insert" parameterType="com.young.sys.badminton.domain.ClubMember">
         insert into club_member (club_id, user_id, member_level)
         values (#{clubId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{memberLevel,jdbcType=INTEGER})
@@ -34,4 +40,9 @@
         set status = -1
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <delete id="removeMember">
+        delete from club_member
+        where club_id = #{clubId} and user_id = #{userId}
+    </delete>
 </mapper>

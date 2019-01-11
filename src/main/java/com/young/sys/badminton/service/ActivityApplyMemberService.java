@@ -54,4 +54,8 @@ public class ActivityApplyMemberService {
         }
         return activityApplyMemberModelList;
     }
+
+    public void cancelApply(Integer activityId, Integer userId) {
+        activityApplyMemberMapper.cancelApply(activityId,userId);
+    }
 }

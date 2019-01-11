@@ -121,4 +121,11 @@ public class ActivityService {
         exchangeToModel(activityModelList, activityList);
         return activityModelList;
     }
+
+    public List<ActivityModel> selectMineApplyActivity(Integer userId) {
+        List<ActivityModel> activityModelList = new ArrayList<>();
+        List<Activity> activityList = activityMapper.selectMineApplyActivity(userId);
+        exchangeToModel(activityModelList, activityList);
+        return activityModelList;
+    }
 }

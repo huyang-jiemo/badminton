@@ -26,4 +26,9 @@
         set status = -1
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <delete id="cancelApply">
+        delete from activity_apply_member
+        where activity_id = #{activityId} and user_id = #{userId}
+    </delete>
 </mapper>

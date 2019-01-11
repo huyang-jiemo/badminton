@@ -1,13 +1,13 @@
 package com.young.sys.badminton.api;
 
-import com.young.sys.badminton.domain.Activity;
-import com.young.sys.badminton.model.AjaxResult;
-import com.young.sys.badminton.service.ActivityService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+        import com.young.sys.badminton.domain.Activity;
+        import com.young.sys.badminton.model.AjaxResult;
+        import com.young.sys.badminton.service.ActivityService;
+        import org.springframework.stereotype.Controller;
+        import org.springframework.web.bind.annotation.RequestMapping;
+        import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
+        import javax.annotation.Resource;
 
 /**
  * @author huyang8
@@ -49,5 +49,11 @@ public class ActivityApi extends BaseApi{
     @ResponseBody
     public AjaxResult selectByClubId(Integer clubId) {
         return successData(activityService.selectByClubId(clubId));
+    }
+
+    @RequestMapping("/selectMineApplyActivity.do")
+    @ResponseBody
+    public AjaxResult selectMineApplyActivity(Integer userId) {
+        return successData(activityService.selectMineApplyActivity(userId));
     }
 }

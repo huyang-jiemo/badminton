@@ -36,4 +36,20 @@ public class ClubMemberApi extends BaseApi{
         clubMemberService.insert(clubMember);
         return success();
     }
+
+    @RequestMapping("/removeMember.do")
+    @ResponseBody
+    public AjaxResult removeMember(Integer userId,Integer clubId) {
+        clubMemberService.removeMember(userId,clubId);
+        return success();
+    }
+
+    @RequestMapping("/updateMemberLevel.do")
+    @ResponseBody
+    public AjaxResult updateMemberLevel(ClubMember clubMember) {
+        ClubMember clubMemberDB = clubMemberService.selectById(clubMember.getId());
+        clubMemberDB.setMemberLevel(clubMember.getMemberLevel());
+        clubMemberService.update(clubMemberDB);
+        return success();
+    }
 }

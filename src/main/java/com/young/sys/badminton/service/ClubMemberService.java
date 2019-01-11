@@ -31,6 +31,10 @@ public class ClubMemberService {
         return clubMemberMapper.selectByClubId(clubId);
     }
 
+    public ClubMember selectById(Integer id){
+        return clubMemberMapper.selectById(id);
+    }
+
     public void insert(ClubMember clubMember){
         clubMemberMapper.insert(clubMember);
     }
@@ -56,5 +60,9 @@ public class ClubMemberService {
             }
         }
         return resultList;
+    }
+
+    public void removeMember(Integer userId, Integer clubId) {
+        clubMemberMapper.removeMember(userId,clubId);
     }
 }

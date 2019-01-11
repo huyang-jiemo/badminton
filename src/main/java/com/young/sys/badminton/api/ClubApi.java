@@ -57,6 +57,19 @@ public class ClubApi extends BaseApi {
         return success();
     }
 
+    @RequestMapping("/edit.do")
+    @ResponseBody
+    public AjaxResult edit(String clubName, Integer userId, String clubMemo, String clubAddress, String clubPhone) {
+        Club club = clubService.selectByUserId(userId);
+        club.setClubName(clubName);
+        club.setUserId(userId);
+        club.setClubMemo(clubMemo);
+        club.setClubAddress(clubAddress);
+        club.setClubPhone(clubPhone);
+        clubService.update(club);
+        return success();
+    }
+
     @RequestMapping("/uploadLogo.do")
     @ResponseBody
     public AjaxResult uploadLogo(Integer userId,HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) {
