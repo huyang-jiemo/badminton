@@ -18,7 +18,7 @@ create table user
 )
   comment '后台用户表'
   engine = InnoDB
-  CHARACTER SET utf8;
+  CHARACTER SET utf8mb4;
 
 create table club
 (
@@ -42,7 +42,7 @@ create table club
 )
   comment '俱乐部表'
   engine = InnoDB
-  CHARACTER SET utf8;
+  CHARACTER SET utf8mb4;
 
 create table club_member
 (
@@ -60,7 +60,25 @@ create table club_member
 )
   comment '俱乐部成员表'
   engine = InnoDB
-  CHARACTER SET utf8;
+  CHARACTER SET utf8mb4;
+
+create table club_photo
+(
+  id         int auto_increment
+  comment '主键id'
+    primary key,
+  club_id    int             null
+  comment '俱乐部id',
+  photo_url  varchar(255)    null
+  comment '照片url',
+  photo_date varchar(30)     null
+  comment '上传日期',
+  status     int default '1' null
+  comment '状态(1-正常;-1-失效)'
+)
+  comment '俱乐部照片表'
+  engine = InnoDB
+  CHARACTER SET utf8mb4;
 
 create table activity
 (
@@ -86,7 +104,7 @@ create table activity
 )
   comment '活动表'
   engine = InnoDB
-  CHARACTER SET utf8;
+  CHARACTER SET utf8mb4;
 
 create table activity_apply_member
 (
@@ -102,4 +120,4 @@ create table activity_apply_member
 )
   comment '活动报名表'
   engine = InnoDB
-  CHARACTER SET utf8;
+  CHARACTER SET utf8mb4;

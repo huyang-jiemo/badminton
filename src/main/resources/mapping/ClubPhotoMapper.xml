@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.badminton.dao.ClubPhotoMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.badminton.domain.ClubPhoto">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="club_id" property="clubId" jdbcType="INTEGER"/>
+        <result column="photo_url" property="photoUrl" jdbcType="VARCHAR"/>
+        <result column="photo_date" property="photoDate" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectByClubId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from club_photo
+        where status = 1
+              and club_id = #{clubId}
+    </select>
+
+    <insert id="insert" parameterType="com.young.sys.badminton.domain.ClubPhoto">
+        insert into club_photo (club_id, photo_url, photo_date)
+        values (#{clubId,jdbcType=INTEGER}, #{photoUrl,jdbcType=VARCHAR}, #{photoDate,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from club_photo
+        where id = #{id}
+    </delete>
+
+    <select id="selectDisDateByClubId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select distinct (photo_date)
+        from club_photo
+        where club_id = #{clubId}
+        order by photo_date desc
+    </select>
+
+    <select id="selectByClubIdAndDate" resultMap="BaseResultMap">
+        select *
+        from club_photo
+        where club_id = #{clubId} and photo_date = #{photoDate}
+    </select>
+</mapper>

@@ -29,6 +29,9 @@ public class ClubService {
     @Resource
     private ClubMemberMapper clubMemberMapper;
 
+    @Resource
+    private ClubPhotoService clubPhotoService;
+
     public List<Club> selectAll(){
         return clubMapper.selectAll();
     }
@@ -55,12 +58,11 @@ public class ClubService {
 
     public ClubModel selectModelById(Integer id){
         Club club = clubMapper.selectById(id);
-        User user = userMapper.selectById(club.getUserId());
-        List<ClubMember> clubMemberlist = clubMemberMapper.selectByClubId(club.getId());
         ClubModel clubModel = new ClubModel();
-        clubModel.setUser(user);
+        clubModel.setUser(userMapper.selectById(club.getUserId()));
         clubModel.setClub(club);
-        clubModel.setClubMemberList(clubMemberlist);
+        clubModel.setClubMemberList(clubMemberMapper.selectByClubId(club.getId()));
+        clubModel.setClubPhotoList(clubPhotoService.selectByClubId(club.getId()));
         return clubModel;
     }
 
