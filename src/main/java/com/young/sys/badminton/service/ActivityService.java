@@ -33,7 +33,7 @@ public class ActivityService {
     private ActivityMapper activityMapper;
 
     @Resource
-    private ActivityApplyMemberMapper activityMemberMapper;
+    private ActivityApplyMemberMapper activityApplyMemberMapper;
 
     public List<Activity> selectAll(){
         return activityMapper.selectAll();
@@ -77,7 +77,7 @@ public class ActivityService {
         detailModel.setClub(club);
         detailModel.setUser(userMapper.selectById(club.getUserId()));
         detailModel.setActivity(activity);
-        detailModel.setActivityApplyMemberList(activityMemberMapper.selectByActivityId(id));
+        detailModel.setActivityApplyMemberList(activityApplyMemberMapper.selectByActivityId(id));
         detailModel.setActivityStatus(calateActivityStatus(activity));
         return detailModel;
     }
@@ -110,6 +110,7 @@ public class ActivityService {
                 activityModel.setClub(clubMapper.selectById(activity.getClubId()));
                 activityModel.setActivity(activity);
                 activityModel.setActivityStatus(calateActivityStatus(activity));
+                activityModel.setActivityApplyMemberList(activityApplyMemberMapper.selectByActivityId(activity.getId()));
                 activityModelList.add(activityModel);
             }
         }
