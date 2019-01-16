@@ -48,9 +48,8 @@ public class ClubApi extends BaseApi {
         user.setRole(2);//将用户置为俱乐部会长
         userService.update(user);
         //插入成员表
-        Club clubDB = clubService.selectByUserId(userId);
         ClubMember clubMember = new ClubMember();
-        clubMember.setClubId(clubDB.getId());
+        clubMember.setClubId(club.getId());
         clubMember.setUserId(userId);
         clubMember.setMemberLevel(0);
         clubMemberService.insert(clubMember);

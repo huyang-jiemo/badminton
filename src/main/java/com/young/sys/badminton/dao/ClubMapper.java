@@ -12,7 +12,7 @@ public interface ClubMapper {
 
     Club selectByUserId(Integer userId);
 
-    void insert(Club club);
+    Integer insert(Club club);
 
     void update(Club club);
 

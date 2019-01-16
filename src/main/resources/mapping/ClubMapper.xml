@@ -28,10 +28,12 @@
     <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select *
         from club
-        where status = 1 and user_id = #{userId}
+        where status = 1 and id = (select club_id
+                                   from club_member
+                                   where user_id = #{userId})
     </select>
 
-    <insert id="insert" parameterType="com.young.sys.badminton.domain.Club">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.young.sys.badminton.domain.Club">
         insert into club (club_name, user_id, club_logo, club_memo, club_address, club_phone)
         values (#{clubName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
                 #{clubLogo,jdbcType=VARCHAR}, #{clubMemo,jdbcType=VARCHAR}, #{clubAddress,jdbcType=VARCHAR},

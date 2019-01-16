@@ -1,8 +1,10 @@
 package com.young.sys.badminton.api;
 
 import com.young.sys.badminton.domain.ClubMember;
+import com.young.sys.badminton.domain.User;
 import com.young.sys.badminton.model.AjaxResult;
 import com.young.sys.badminton.service.ClubMemberService;
+import com.young.sys.badminton.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +21,9 @@ public class ClubMemberApi extends BaseApi{
 
     @Resource
     private ClubMemberService clubMemberService;
+
+    @Resource
+    private UserService userService;
 
     @RequestMapping("/selectByClubId.do")
     @ResponseBody
@@ -51,6 +56,10 @@ public class ClubMemberApi extends BaseApi{
     @ResponseBody
     public AjaxResult removeMember(Integer userId,Integer clubId) {
         clubMemberService.removeMember(userId,clubId);
+        //将人员角色置为普通成员
+        User user = userService.selectById(userId);
+        user.setRole(1);
+        userService.update(user);
         return success();
     }
 

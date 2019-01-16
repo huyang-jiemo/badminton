@@ -44,8 +44,8 @@ public class ClubService {
         return clubMapper.selectByUserId(userId);
     }
 
-    public void insert(Club club){
-        clubMapper.insert(club);
+    public Integer insert(Club club){
+        return clubMapper.insert(club);
     }
 
     public void update(Club club){
