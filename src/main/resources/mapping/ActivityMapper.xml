@@ -93,7 +93,7 @@
         <![CDATA[
         select *
         from activity
-        where status = 1 and activity_date < date_format(now(), '%Y-%m-%d')
+        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) < YEARWEEK(now())
         order by activity_date desc, start_time desc, end_time desc
         ]]>
     </select>

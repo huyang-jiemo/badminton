@@ -11,6 +11,8 @@ public interface ClubMemberMapper {
 
     ClubMember selectById(Integer id);
 
+    ClubMember selectByUserId(Integer userId);
+
     void insert(ClubMember clubMember);
 
     void update(ClubMember clubMember);

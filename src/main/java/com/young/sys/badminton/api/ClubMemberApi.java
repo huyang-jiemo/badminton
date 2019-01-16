@@ -26,9 +26,19 @@ public class ClubMemberApi extends BaseApi{
         return successData(clubMemberService.selectModelByClubId(clubId));
     }
 
+    @RequestMapping("/selectClubMemberByUserId.do")
+    @ResponseBody
+    public AjaxResult selectClubMemberByUserId(Integer userId) {
+        return successData(clubMemberService.selectByUserId(userId));
+    }
+
     @RequestMapping("/joinClub.do")
     @ResponseBody
     public AjaxResult joinClub(Integer userId,Integer clubId) {
+        ClubMember clubMemberDB = clubMemberService.selectByUserId(userId);
+        if(clubMemberDB!=null){
+            return failMessage(null);
+        }
         ClubMember clubMember = new ClubMember();
         clubMember.setClubId(clubId);
         clubMember.setUserId(userId);

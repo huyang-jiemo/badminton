@@ -1,5 +1,7 @@
 package com.young.sys.badminton.domain;
 
+import com.young.sys.badminton.util.DateUtil;
+
 public class Activity {
 
     private Integer id;
@@ -19,6 +21,8 @@ public class Activity {
     private String activityMemo;
 
     private Integer status;
+
+    private String weekdayName;
 
     public Integer getId() {
         return id;
@@ -90,5 +94,13 @@ public class Activity {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getWeekdayName() {
+        return DateUtil.dayForWeek(activityDate);
+    }
+
+    public void setWeekdayName(String weekdayName) {
+        this.weekdayName = weekdayName;
     }
 }

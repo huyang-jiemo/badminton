@@ -21,6 +21,12 @@
         where status = 1 and id = #{id}
     </select>
 
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from club_member
+        where user_id = #{userId}
+    </select>
+
     <insert id="insert" parameterType="com.young.sys.badminton.domain.ClubMember">
         insert into club_member (club_id, user_id, member_level)
         values (#{clubId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{memberLevel,jdbcType=INTEGER})
