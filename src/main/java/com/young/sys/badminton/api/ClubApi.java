@@ -69,6 +69,13 @@ public class ClubApi extends BaseApi {
         return success();
     }
 
+    @RequestMapping("/dissolveClub.do")
+    @ResponseBody
+    public AjaxResult dissolveClub(Integer clubId) {
+        clubService.dissolveClub(clubId);
+        return success();
+    }
+
     @RequestMapping("/uploadLogo.do")
     @ResponseBody
     public AjaxResult uploadLogo(Integer userId,HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) {

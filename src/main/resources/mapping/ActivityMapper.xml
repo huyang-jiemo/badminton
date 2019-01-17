@@ -113,4 +113,9 @@
         where
             concat(b.activity_date, ' ', b.start_time) > date_format(now(), '%Y-%m-%d %H:%i') and a.user_id = #{userId}
     </select>
+
+    <delete id="deleteByClubId" parameterType="java.lang.Integer">
+        delete from activity
+        where club_id = #{clubId}
+    </delete>
 </mapper>

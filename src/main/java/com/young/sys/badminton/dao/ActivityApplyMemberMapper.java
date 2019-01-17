@@ -14,4 +14,6 @@ public interface ActivityApplyMemberMapper {
     void deleteById(Integer id);
 
     void cancelApply(@Param("activityId")Integer activityId, @Param("userId")Integer userId);
+
+    void deleteByClubId(Integer clubId);
 }

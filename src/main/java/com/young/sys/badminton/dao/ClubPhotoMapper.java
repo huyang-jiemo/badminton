@@ -16,4 +16,6 @@ public interface ClubPhotoMapper {
     List<String> selectDisDateByClubId(Integer clubId);
 
     List<ClubPhoto> selectByClubIdAndDate(@Param("clubId")Integer clubId, @Param("photoDate")String photoDate);
+
+    void deleteByClubId(Integer clubId);
 }

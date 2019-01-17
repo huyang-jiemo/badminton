@@ -20,4 +20,6 @@ public interface ClubMemberMapper {
     void deleteById(Integer id);
 
     void removeMember(@Param("userId")Integer userId, @Param("clubId")Integer clubId);
+
+    void deleteByClubId(Integer clubId);
 }

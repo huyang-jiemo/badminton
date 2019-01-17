@@ -51,4 +51,9 @@
         delete from club_member
         where club_id = #{clubId} and user_id = #{userId}
     </delete>
+
+    <delete id="deleteByClubId" parameterType="java.lang.Integer">
+        delete from club_member
+        where club_id = #{clubId}
+    </delete>
 </mapper>

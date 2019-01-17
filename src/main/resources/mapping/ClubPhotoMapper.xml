@@ -38,4 +38,9 @@
         from club_photo
         where club_id = #{clubId} and photo_date = #{photoDate}
     </select>
+
+    <delete id="deleteByClubId" parameterType="java.lang.Integer">
+        delete from club_photo
+        where club_id = #{clubId}
+    </delete>
 </mapper>

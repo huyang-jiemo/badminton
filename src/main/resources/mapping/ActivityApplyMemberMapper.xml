@@ -31,4 +31,11 @@
         delete from activity_apply_member
         where activity_id = #{activityId} and user_id = #{userId}
     </delete>
+
+    <delete id="deleteByClubId" parameterType="java.lang.Integer">
+        delete from activity_apply_member
+        where activity_id in (select id
+                              from activity
+                              where club_id = #{clubId})
+    </delete>
 </mapper>

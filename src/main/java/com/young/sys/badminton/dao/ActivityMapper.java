@@ -25,4 +25,6 @@ public interface ActivityMapper {
     List<Activity> selectMinePastActivity(Integer userId);
 
     List<Activity> selectMineApplyActivity(Integer userId);
+
+    void deleteByClubId(Integer clubId);
 }
