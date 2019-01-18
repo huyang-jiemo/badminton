@@ -1,5 +1,13 @@
 package com.young.sys.badminton.util;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.CharArrayBuffer;
+import org.apache.http.util.EntityUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,38 +15,68 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class WeChatUtil {
-    private static final String APPID="wx9b93f178992ef513";
+    private static final String APPID = "wx9b93f178992ef513";
 
-    private static final String APPSECRET="08bd5d7978f0ea5824bb6e22e7b3302d";
+    private static final String APPSECRET = "08bd5d7978f0ea5824bb6e22e7b3302d";
 
-    private static final String apiUrlStr = "https://api.weixin.qq.com/sns/jscode2session?appid="+APPID+"&secret="+APPSECRET+"&grant_type=authorization_code&js_code=";
+    private static final String apiUrlStr = "https://api.weixin.qq.com/sns/jscode2session?appid=" + APPID + "&secret=" + APPSECRET + "&grant_type=authorization_code&js_code=";
 
     //小程序api接口封装
-    public static String getConvert(String urlStr){
-        urlStr=apiUrlStr+urlStr;
-        String data = null;
+    public static String getConvert(String jsCode) {
+        String url = apiUrlStr + jsCode;
+        return get(url);
+    }
+
+    /**
+     * get请求，参数拼接在地址上
+     *
+     * @param url 请求地址加参数
+     * @return 响应
+     */
+    private static String get(String url) {
+        String result = null;
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+        CloseableHttpResponse response = null;
         try {
-            URL url = new URL(urlStr);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            //连接超时
-            connection.setConnectTimeout(20000);
-            //读取数据超时
-            connection.setReadTimeout(19000);
-            connection.connect();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream(),"utf-8"));
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while ((line = bufferedReader.readLine())!=null) {
-                stringBuilder.append(line);
+            response = httpClient.execute(get);
+            if (response != null && response.getStatusLine().getStatusCode() == 200) {
+                HttpEntity entity = response.getEntity();
+                result = entityToString(entity);
             }
-            bufferedReader.close();
-            connection.disconnect();
-            data = stringBuilder.toString();
+            return result;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+        } finally {
+            try {
+                httpClient.close();
+                if (response != null) {
+                    response.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println(data);
-        return data;
+        return null;
+    }
+
+    private static String entityToString(HttpEntity entity) throws IOException {
+        String result = null;
+        if (entity != null) {
+            long lenth = entity.getContentLength();
+            if (lenth != -1 && lenth < 2048) {
+                result = EntityUtils.toString(entity, "UTF-8");
+            } else {
+                InputStreamReader reader1 = new InputStreamReader(entity.getContent(), "UTF-8");
+                CharArrayBuffer buffer = new CharArrayBuffer(2048);
+                char[] tmp = new char[1024];
+                int l;
+                while ((l = reader1.read(tmp)) != -1) {
+                    buffer.append(tmp, 0, l);
+                }
+                result = buffer.toString();
+            }
+        }
+        return result;
     }
 }
