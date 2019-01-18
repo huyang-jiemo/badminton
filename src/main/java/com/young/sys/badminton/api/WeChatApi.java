@@ -1,8 +1,11 @@
 package com.young.sys.badminton.api;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.young.sys.badminton.domain.User;
 import com.young.sys.badminton.model.AjaxResult;
 import com.young.sys.badminton.service.UserService;
+import com.young.sys.badminton.util.WeChatUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,5 +58,14 @@ public class WeChatApi extends BaseApi{
             userService.update(userDB);
             return successData(userDB);
         }
+    }
+
+    @RequestMapping("/getOpenId.do")
+    @ResponseBody
+    public AjaxResult getOpenId(String jsCode){
+        String data = WeChatUtil.getConvert(jsCode);
+        JSONObject obj = JSON.parseObject(data);
+        String openid = (String) obj.get("openid");
+        return successData(openid);
     }
 }
