@@ -56,6 +56,7 @@ public class ActivityService {
     }
 
     public void deleteById(Integer id){
+        activityApplyMemberMapper.deleteByActivityId(id);
         activityMapper.deleteById(id);
     }
 

@@ -56,4 +56,11 @@ public class ActivityApi extends BaseApi{
     public AjaxResult selectMineApplyActivity(Integer userId) {
         return successData(activityService.selectMineApplyActivity(userId));
     }
+
+    @RequestMapping("/cancelActivity.do")
+    @ResponseBody
+    public AjaxResult cancelActivity(Integer activityId) {
+        activityService.deleteById(activityId);
+        return success();
+    }
 }

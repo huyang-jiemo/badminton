@@ -76,11 +76,10 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="deleteById" parameterType="java.lang.Integer">
-        update activity
-        set status = -1
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from activity
         where id = #{id,jdbcType=INTEGER}
-    </update>
+    </delete>
 
     <select id="selectAllThisWeek" resultMap="BaseResultMap">
         select *
