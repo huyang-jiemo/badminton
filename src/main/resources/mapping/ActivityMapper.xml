@@ -84,15 +84,15 @@
     <select id="selectAllThisWeek" resultMap="BaseResultMap">
         select *
         from activity
-        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) = YEARWEEK(now())
-        order by activity_date desc, start_time desc, end_time desc
+        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) >= YEARWEEK(now()) and activity_date >= date_format(now(), '%Y-%m-%d')
+        order by activity_date asc, start_time asc, end_time asc
     </select>
 
     <select id="selectPast" resultMap="BaseResultMap">
         <![CDATA[
         select *
         from activity
-        where status = 1 and YEARWEEK(date_format(activity_date, '%Y-%m-%d')) < YEARWEEK(now())
+        where status = 1 and activity_date < date_format(now(), '%Y-%m-%d')
         order by activity_date desc, start_time desc, end_time desc
         ]]>
     </select>
