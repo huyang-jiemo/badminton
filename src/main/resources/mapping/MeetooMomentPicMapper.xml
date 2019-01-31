@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.meetoo.dao.MeetooMomentPicMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.meetoo.domain.MeetooMomentPic">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="moment_id" property="momentId" jdbcType="INTEGER"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectPicByMomentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from meetoo_moment_pic
+        where moment_id = #{momentId}
+        order by id desc
+    </select>
+
+    <insert id="insert" parameterType="com.young.sys.meetoo.domain.MeetooMomentPic">
+        insert into meetoo_moment_pic (moment_id, url, create_time)
+        values (#{momentId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR})
+    </insert>
+</mapper>

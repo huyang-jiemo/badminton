@@ -56,7 +56,7 @@
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.young.sys.badminton.dao"/>
+        <property name="basePackage" value="com.young.sys.badminton.dao,com.young.sys.meetoo.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

@@ -12,9 +12,9 @@
                         connectionURL="jdbc:mysql://localhost:3306/Ug8QB4jc?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
                         password="huyang"/>
-        <javaModelGenerator targetPackage="com.young.sys.badminton.domain" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.young.sys.meetoo.domain" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources"/>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.young.sys.badminton.dao" targetProject="src/main/java"/>
-        <table schema="" tableName="match_enter" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.young.sys.meetoo.dao" targetProject="src/main/java"/>
+        <table schema="" tableName="meetoo_group_member" enableCountByExample="false" enableSelectByExample="false" enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

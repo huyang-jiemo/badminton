@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.meetoo.dao.MeetooMomentCommentMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.meetoo.domain.MeetooMomentComment">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="moment_id" property="momentId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="nick" property="nick" jdbcType="VARCHAR"/>
+        <result column="word" property="word" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectCommentByMomentId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+            a.*,
+            b.avatar,
+            b.nick
+        from meetoo_moment_comment a left join meetoo_user b on a.user_id = b.id
+        where a.moment_id = #{momentId} and a.status = 1 and b.status = 1
+        order by a.id asc
+    </select>
+
+    <insert id="insert" parameterType="com.young.sys.meetoo.domain.MeetooMomentComment">
+        insert into meetoo_moment_comment (moment_id, user_id, word, create_time)
+        values (#{momentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{word,jdbcType=VARCHAR},
+                #{createTime,jdbcType=VARCHAR})
+    </insert>
+</mapper>

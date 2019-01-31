@@ -15,16 +15,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class WeChatUtil {
-    private static final String APPID = "wx9b93f178992ef513";
-
-    private static final String APPSECRET = "08bd5d7978f0ea5824bb6e22e7b3302d";
-
-    private static final String apiUrlStr = "https://api.weixin.qq.com/sns/jscode2session?appid=" + APPID + "&secret=" + APPSECRET + "&grant_type=authorization_code&js_code=";
 
     //小程序api接口封装
-    public static String getConvert(String jsCode) {
-        String url = apiUrlStr + jsCode;
-        return get(url);
+    public static String getConvert(String jsCode,String appid,String appsecret) {
+        String str = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appid +
+                "&secret=" +
+                appsecret +
+                "&grant_type=authorization_code&js_code=" +
+                jsCode;
+        return get(str);
     }
 
     /**

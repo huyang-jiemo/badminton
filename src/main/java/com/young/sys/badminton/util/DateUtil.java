@@ -23,8 +23,14 @@ public class DateUtil {
             e.printStackTrace();
         }
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1; // 指示一个星期中的某天。
-        if (w < 0)
+        if (w < 0){
             w = 0;
+        }
         return weekDays[w];
+    }
+
+    public static String getNow(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(new Date());
     }
 }

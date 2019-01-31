@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.meetoo.dao.MeetooUserRelationMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.meetoo.domain.MeetooUserRelation">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="fan_user_id" property="fanUserId" jdbcType="INTEGER"/>
+        <result column="follow_user_id" property="followUserId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMapUser" type="com.young.sys.meetoo.domain.MeetooUser">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="openid" property="openid" jdbcType="VARCHAR"/>
+        <result column="nick" property="nick" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="constellation" property="constellation" jdbcType="INTEGER"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectUserFollows" resultMap="BaseResultMapUser" parameterType="java.lang.Integer">
+        select b.*
+        from meetoo_user_relation a left join meetoo_user b on a.follow_user_id = b.id
+        where a.fan_user_id = #{userId}
+        order by a.id desc
+    </select>
+
+    <select id="selectUserFans" resultMap="BaseResultMapUser" parameterType="java.lang.Integer">
+        select b.*
+        from meetoo_user_relation a left join meetoo_user b on a.fan_user_id = b.id
+        where a.follow_user_id = #{userId}
+        order by a.id desc
+    </select>
+
+    <select id="selectIsFan" resultMap="BaseResultMap">
+        select *
+        from meetoo_user_relation
+        where fan_user_id = #{fanUserId} and follow_user_id = #{followUserId} and status = 1
+    </select>
+
+    <delete id="deleteRelation">
+        delete from meetoo_user_relation
+        where fan_user_id = #{fanUserId} and follow_user_id = #{followUserId}
+    </delete>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.young.sys.meetoo.domain.MeetooUserRelation">
+        insert into meetoo_user_relation (fan_user_id, follow_user_id, create_time)
+        values (#{fanUserId,jdbcType=INTEGER}, #{followUserId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR})
+    </insert>
+</mapper>

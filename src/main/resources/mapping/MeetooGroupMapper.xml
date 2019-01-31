@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.young.sys.meetoo.dao.MeetooGroupMapper">
+    <resultMap id="BaseResultMap" type="com.young.sys.meetoo.domain.MeetooGroup">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="tag" property="tag" jdbcType="VARCHAR"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from meetoo_group
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from meetoo_group
+        where type = #{type,jdbcType=INTEGER}
+        order by id desc
+    </select>
+
+    <select id="selectUserGroups" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select b.*
+        from meetoo_group_member a left join meetoo_group b on a.group_id = b.id
+        where a.user_id = #{userId}
+        order by a.id desc
+    </select>
+
+    <select id="selectMineGroups" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select *
+        from meetoo_group
+        where user_id = #{userId}
+        order by id desc
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.young.sys.meetoo.domain.MeetooGroup">
+        insert into meetoo_group (user_id, group_name,
+                                  type, tag, intro, create_time)
+        values (#{userId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR},
+                #{type,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR},
+                #{createTime,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.young.sys.meetoo.domain.MeetooGroup">
+        update meetoo_group
+        set user_id     = #{userId,jdbcType=INTEGER},
+            group_name  = #{groupName,jdbcType=VARCHAR},
+            type        = #{type,jdbcType=INTEGER},
+            tag         = #{tag,jdbcType=VARCHAR},
+            intro       = #{intro,jdbcType=VARCHAR},
+            status      = #{status,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from meetoo_group
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+</mapper>

@@ -20,6 +20,10 @@ import javax.annotation.Resource;
 @RequestMapping("/api/wechat")
 public class WeChatApi extends BaseApi{
 
+    private static final String APPID = "wx9b93f178992ef513";
+
+    private static final String APPSECRET = "08bd5d7978f0ea5824bb6e22e7b3302d";
+
     @Resource
     private UserService userService;
 
@@ -63,7 +67,7 @@ public class WeChatApi extends BaseApi{
     @RequestMapping("/getOpenId.do")
     @ResponseBody
     public AjaxResult getOpenId(String jsCode){
-        String data = WeChatUtil.getConvert(jsCode);
+        String data = WeChatUtil.getConvert(jsCode,APPID,APPSECRET);
         JSONObject obj = JSON.parseObject(data);
         String openid = (String) obj.get("openid");
         return successData(openid);
