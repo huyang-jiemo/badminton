@@ -24,6 +24,13 @@
         order by id desc
     </select>
 
+    <select id="selectGroupMyTopic" resultMap="BaseResultMap">
+        select *
+        from meetoo_topic
+        where group_id = #{groupId} and user_id = #{userId}
+        order by id desc
+    </select>
+
     <insert id="insert" keyProperty="id" useGeneratedKeys="true"
             parameterType="com.young.sys.meetoo.domain.MeetooTopic">
         insert into meetoo_topic (group_id, user_id,

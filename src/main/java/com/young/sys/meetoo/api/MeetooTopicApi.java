@@ -43,6 +43,12 @@ public class MeetooTopicApi extends MeetooBaseApi {
         return successData(meetooTopicService.selectMeetooTopicModelByGroupId(groupId));
     }
 
+    @RequestMapping("/selectGroupMyTopic.do")
+    @ResponseBody
+    public AjaxResult selectGroupMyTopic(Integer groupId, Integer userId) {
+        return successData(meetooTopicService.selectGroupMyTopic(groupId, userId));
+    }
+
     @RequestMapping("/publish.do")
     @ResponseBody
     public AjaxResult publish(MeetooTopic meetooTopic) {
@@ -57,9 +63,9 @@ public class MeetooTopicApi extends MeetooBaseApi {
         MeetooTopic meetooTopic = meetooTopicService.selectById(topicId);
         String url = FileUploadUtil.uploadFile(file, request, "meetoo_topic");
         String dbUrl = meetooTopic.getPictures();
-        if(StringUtils.isNotEmpty(dbUrl)){
+        if (StringUtils.isNotEmpty(dbUrl)) {
             dbUrl = dbUrl + url + "&";
-        }else{
+        } else {
             dbUrl = url + "&";
         }
         meetooTopic.setPictures(dbUrl);
@@ -69,9 +75,16 @@ public class MeetooTopicApi extends MeetooBaseApi {
 
     @RequestMapping("/saveTopicComment.do")
     @ResponseBody
-    public AjaxResult saveTopicComment(MeetooTopicComment meetooTopicComment){
+    public AjaxResult saveTopicComment(MeetooTopicComment meetooTopicComment) {
         meetooTopicComment.setCreateTime(DateUtil.getNow());
         meetooTopicCommentService.insert(meetooTopicComment);
+        return success();
+    }
+
+    @RequestMapping("/deleteTopic.do")
+    @ResponseBody
+    public AjaxResult deleteTopicById(Integer topicId) {
+        meetooTopicService.deleteById(topicId);
         return success();
     }
 }

@@ -44,6 +44,17 @@ public class MeetooTopicService {
         return meetooTopicModelList;
     }
 
+    public List<MeetooTopicModel> selectGroupMyTopic(Integer groupId, Integer userId) {
+        List<MeetooTopicModel> meetooTopicModelList = new ArrayList<>();
+        List<MeetooTopic> meetooTopicList = meetooTopicMapper.selectGroupMyTopic(groupId, userId);
+        if (meetooTopicList != null && meetooTopicList.size() > 0) {
+            for (MeetooTopic meetooTopic : meetooTopicList) {
+                meetooTopicModelList.add(translateTopicModel(meetooTopic));
+            }
+        }
+        return meetooTopicModelList;
+    }
+
     private MeetooTopicModel translateTopicModel(MeetooTopic meetooTopic) {
         MeetooTopicModel meetooTopicModel = new MeetooTopicModel();
         meetooTopic.setTopic(EmojiParser.parseToUnicode(meetooTopic.getTopic()));
@@ -75,9 +86,19 @@ public class MeetooTopicService {
 
     public void deleteById(Integer id) {
         meetooTopicMapper.deleteById(id);
+        meetooTopicCommentService.deleteByTopicId(id);
     }
 
     public void deleteByGroupId(Integer groupId) {
+        List<MeetooTopic> list = meetooTopicMapper.selectByGroupId(groupId);
+        if (list != null && list.size() > 0) {
+            for (MeetooTopic topic : list) {
+                meetooTopicCommentService.deleteByTopicId(topic.getId());
+            }
+        }
         meetooTopicMapper.deleteByGroupId(groupId);
+
     }
+
+
 }

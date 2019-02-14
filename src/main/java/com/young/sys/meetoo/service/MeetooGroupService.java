@@ -11,7 +11,6 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- *
  * @author huyang8
  * @date 2019-01-30 14:43
  */
@@ -27,9 +26,12 @@ public class MeetooGroupService {
     @Resource
     private MeetooUserService meetooUserService;
 
-    public MeetooGroup selectById(Integer id){
+    @Resource
+    private MeetooTopicService meetooTopicService;
+
+    public MeetooGroup selectById(Integer id) {
         MeetooGroup group = meetooGroupMapper.selectById(id);
-        if(group!=null){
+        if (group != null) {
             group.setGroupName(EmojiParser.parseToUnicode(group.getGroupName()));
             group.setIntro(EmojiParser.parseToUnicode(group.getIntro()));
             group.setMeetooUser(meetooUserService.selectById(group.getUserId()));
@@ -37,21 +39,21 @@ public class MeetooGroupService {
         return group;
     }
 
-    public List<MeetooGroup> selectByType(Integer type){
+    public List<MeetooGroup> selectByType(Integer type) {
         List<MeetooGroup> list = meetooGroupMapper.selectByType(type);
         transMeetooGroup(list);
         return list;
     }
 
-    public List<MeetooGroup> selectUserGroups(Integer userId){
+    public List<MeetooGroup> selectUserGroups(Integer userId) {
         List<MeetooGroup> list = meetooGroupMapper.selectUserGroups(userId);
         transMeetooGroup(list);
         return list;
     }
 
     private void transMeetooGroup(List<MeetooGroup> list) {
-        if(list!=null&&list.size()>0){
-            for(MeetooGroup group:list){
+        if (list != null && list.size() > 0) {
+            for (MeetooGroup group : list) {
                 group.setGroupName(EmojiParser.parseToUnicode(group.getGroupName()));
                 group.setIntro(EmojiParser.parseToUnicode(group.getIntro()));
                 group.setMeetooUser(meetooUserService.selectById(group.getUserId()));
@@ -59,30 +61,31 @@ public class MeetooGroupService {
         }
     }
 
-    public List<MeetooGroup> selectMineGroups(Integer userId){
+    public List<MeetooGroup> selectMineGroups(Integer userId) {
         List<MeetooGroup> list = meetooGroupMapper.selectMineGroups(userId);
         transMeetooGroup(list);
         return list;
     }
 
-    public Integer insert(MeetooGroup record){
+    public Integer insert(MeetooGroup record) {
         record.setGroupName(EmojiParser.parseToAliases(record.getGroupName()));
         record.setIntro(EmojiParser.parseToAliases(record.getIntro()));
         return meetooGroupMapper.insert(record);
     }
 
-    public void update(MeetooGroup record){
+    public void update(MeetooGroup record) {
         record.setGroupName(EmojiParser.parseToAliases(record.getGroupName()));
         record.setIntro(EmojiParser.parseToAliases(record.getIntro()));
         meetooGroupMapper.update(record);
     }
 
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         meetooGroupMapper.deleteById(id);
         meetooGroupMemberMapper.deleteByGroupId(id);
+        meetooTopicService.deleteByGroupId(id);
     }
 
-    public Integer insertMeetooGroupMember(MeetooGroupMember meetooGroupMember){
+    public Integer insertMeetooGroupMember(MeetooGroupMember meetooGroupMember) {
         return meetooGroupMemberMapper.insert(meetooGroupMember);
     }
 }
