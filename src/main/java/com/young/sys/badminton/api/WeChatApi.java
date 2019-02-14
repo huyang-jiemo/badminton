@@ -20,9 +20,9 @@ import javax.annotation.Resource;
 @RequestMapping("/api/wechat")
 public class WeChatApi extends BaseApi{
 
-    private static final String APPID = "wx9b93f178992ef513";
+    private static final String APPID = "wxc7b799bbea0a6c10";
 
-    private static final String APPSECRET = "08bd5d7978f0ea5824bb6e22e7b3302d";
+    private static final String APPSECRET = "c9a2d27d8c4ff59c08b2a4b8711283dd";
 
     @Resource
     private UserService userService;
