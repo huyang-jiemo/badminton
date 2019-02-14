@@ -53,7 +53,7 @@ create table meetoo_moment
     primary key,
   user_id     int             null
   comment '用户',
-  emotion     varchar(200)    null
+  emotion     varchar(500)    null
   comment '动态',
   address     varchar(100)    null
   comment '位置',
@@ -175,7 +175,7 @@ create table meetoo_topic
   comment '圈子',
   user_id     int             null
   comment '用户',
-  topic       varchar(255)    null
+  topic       varchar(1000)    null
   comment '话题',
   pictures    varchar(255)    null
   comment '图片',
