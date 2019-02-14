@@ -5,7 +5,7 @@ create table meetoo_user
     primary key,
   openid        varchar(50)     null
   comment 'openid',
-  nick          varchar(50)    null
+  nick          varchar(50)     null
   comment '昵称',
   sex           int default '1' null
   comment '性别(1-男;2-女;)',
@@ -30,61 +30,19 @@ create table meetoo_user
 
 create table meetoo_user_relation
 (
-  id          int auto_increment
+  id             int auto_increment
   comment '主键id'
     primary key,
-  fan_user_id   int             null
+  fan_user_id    int             null
   comment '用户',
-  follow_user_id     int             null
+  follow_user_id int             null
   comment '关注用户',
-  status      int default '1' null
+  status         int default '1' null
   comment '状态(1-正常;-1-失效)',
-  create_time varchar(50)     null
+  create_time    varchar(50)     null
   comment '创建时间'
 )
   comment 'meetoo用户关注表'
-  engine = InnoDB
-  CHARACTER SET utf8mb4;
-
-create table meetoo_group
-(
-  id          int auto_increment
-  comment '主键id'
-    primary key,
-  user_id     int                null
-  comment '创建人',
-  group_name  varchar(50)        null
-  comment '名称',
-  type        int default '1'    null
-  comment '类别',
-  tag         varchar(50)        null
-  comment '标签',
-  intro       varchar(200)       null
-  comment '介绍',
-  status      int default '1'    null
-  comment '状态(1-正常;-1-失效)',
-  create_time varchar(50)        null
-  comment '创建时间'
-)
-  comment 'meetoo圈子表'
-  engine = InnoDB
-  CHARACTER SET utf8mb4;
-
-create table meetoo_group_member
-(
-  id          int auto_increment
-  comment '主键id'
-    primary key,
-  group_id     int             null
-  comment '圈子',
-  user_id     int             null
-  comment '成员',
-  status      int default '1' null
-  comment '状态(1-正常;-1-失效)',
-  create_time varchar(50)     null
-  comment '创建时间'
-)
-  comment 'meetoo圈子成员表'
   engine = InnoDB
   CHARACTER SET utf8mb4;
 
@@ -97,7 +55,7 @@ create table meetoo_moment
   comment '用户',
   emotion     varchar(200)    null
   comment '动态',
-  address     varchar(100)     null
+  address     varchar(100)    null
   comment '位置',
   flag        int default '1' null
   comment '查看量',
@@ -163,5 +121,89 @@ create table meetoo_moment_comment
   comment '创建时间'
 )
   comment 'meetoo动态评论表'
+  engine = InnoDB
+  CHARACTER SET utf8mb4;
+
+create table meetoo_group
+(
+  id          int auto_increment
+  comment '主键id'
+    primary key,
+  user_id     int                null
+  comment '创建人',
+  group_name  varchar(50)        null
+  comment '名称',
+  type        int default '1'    null
+  comment '类别',
+  tag         varchar(50)        null
+  comment '标签',
+  intro       varchar(200)       null
+  comment '介绍',
+  status      int default '1'    null
+  comment '状态(1-正常;-1-失效)',
+  create_time varchar(50)        null
+  comment '创建时间'
+)
+  comment 'meetoo圈子表'
+  engine = InnoDB
+  CHARACTER SET utf8mb4;
+
+create table meetoo_group_member
+(
+  id          int auto_increment
+  comment '主键id'
+    primary key,
+  group_id    int             null
+  comment '圈子',
+  user_id     int             null
+  comment '成员',
+  status      int default '1' null
+  comment '状态(1-正常;-1-失效)',
+  create_time varchar(50)     null
+  comment '创建时间'
+)
+  comment 'meetoo圈子成员表'
+  engine = InnoDB
+  CHARACTER SET utf8mb4;
+
+create table meetoo_topic
+(
+  id          int auto_increment
+  comment '主键id'
+    primary key,
+  group_id    int             null
+  comment '圈子',
+  user_id     int             null
+  comment '用户',
+  topic       varchar(255)    null
+  comment '话题',
+  pictures    varchar(255)    null
+  comment '图片',
+  status      int default '1' null
+  comment '状态(1-正常;-1-失效)',
+  create_time varchar(50)     null
+  comment '创建时间'
+)
+  comment 'meetoo圈子话题表'
+  engine = InnoDB
+  CHARACTER SET utf8mb4;
+
+create table meetoo_topic_comment
+(
+  id          int auto_increment
+  comment '主键id'
+    primary key,
+  topic_id    int             null
+  comment '话题',
+  user_id     int             null
+  comment '用户',
+  word        varchar(255)    null
+  comment '内容',
+  status      int default '1' null
+  comment '状态(1-正常;-1-失效)',
+  create_time varchar(50)     null
+  comment '创建时间'
+)
+  comment 'meetoo圈子话题评论表'
   engine = InnoDB
   CHARACTER SET utf8mb4;

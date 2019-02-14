@@ -21,8 +21,11 @@ public class MeetooMomentCommentService {
 
     public List<MeetooMomentComment> selectCommentByMomentId(Integer momentId){
         List<MeetooMomentComment> list = meetooMomentCommentMapper.selectCommentByMomentId(momentId);
-        for(MeetooMomentComment meetooMomentComment:list){
-            meetooMomentComment.setWord(EmojiParser.parseToUnicode(meetooMomentComment.getWord()));
+        if(list!=null&&list.size()>0){
+            for(MeetooMomentComment meetooMomentComment:list){
+                meetooMomentComment.setWord(EmojiParser.parseToUnicode(meetooMomentComment.getWord()));
+                meetooMomentComment.setNick(EmojiParser.parseToUnicode(meetooMomentComment.getNick()));
+            }
         }
         return list;
     }
