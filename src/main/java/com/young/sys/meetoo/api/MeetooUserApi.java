@@ -2,7 +2,9 @@ package com.young.sys.meetoo.api;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.young.sys.badminton.domain.User;
 import com.young.sys.badminton.model.AjaxResult;
+import com.young.sys.badminton.service.UserService;
 import com.young.sys.badminton.util.DateUtil;
 import com.young.sys.badminton.util.WeChatUtil;
 import com.young.sys.meetoo.domain.MeetooUser;
@@ -34,6 +36,9 @@ public class MeetooUserApi extends MeetooBaseApi {
     @Resource
     private MeetooUserRelationService meetooUserRelationService;
 
+    @Resource
+    private UserService userService;
+
     @RequestMapping("/register.do")
     @ResponseBody
     public AjaxResult register(String jsCode){
@@ -55,6 +60,18 @@ public class MeetooUserApi extends MeetooBaseApi {
     @RequestMapping("/login.do")
     @ResponseBody
     public AjaxResult login(MeetooUser meetooUser){
+        MeetooUser meetooUserDB = meetooUserService.selectByOpenId(meetooUser.getOpenid());
+        if(meetooUserDB==null){
+            User user = userService.selectByOpenid(meetooUser.getOpenid());
+            if(user!=null){
+                meetooUserDB = new MeetooUser();
+                meetooUserDB.setOpenid(meetooUser.getOpenid());
+                meetooUserDB.setNick("用户");
+                meetooUserDB.setSignature("在每一天的清晨都能发现遇喔精彩时刻！");
+                meetooUserDB.setCreateTime(DateUtil.getNow());
+                meetooUserService.insert(meetooUserDB);
+            }
+        }
         return successData(meetooUserService.selectByOpenId(meetooUser.getOpenid()));
     }
 
@@ -68,8 +85,22 @@ public class MeetooUserApi extends MeetooBaseApi {
     @ResponseBody
     public AjaxResult access(MeetooUser meetooUser){
         MeetooUser meetooUserDB = meetooUserService.selectByOpenId(meetooUser.getOpenid());
+        if(meetooUserDB==null){
+            User user = userService.selectByOpenid(meetooUser.getOpenid());
+            if(user!=null){
+                meetooUserDB = new MeetooUser();
+                meetooUserDB.setOpenid(meetooUser.getOpenid());
+                meetooUserDB.setNick("用户");
+                meetooUserDB.setSignature("在每一天的清晨都能发现遇喔精彩时刻！");
+                meetooUserDB.setCreateTime(DateUtil.getNow());
+                meetooUserService.insert(meetooUserDB);
+            }
+            meetooUserDB = meetooUserService.selectByOpenId(meetooUser.getOpenid());
+        }
         meetooUserDB.setNick(meetooUser.getNick());
-        meetooUserDB.setSex(meetooUser.getSex());
+        if(meetooUser.getSex()!=null){
+            meetooUserDB.setSex(meetooUser.getSex());
+        }
         meetooUserDB.setAvatar(meetooUser.getAvatar());
         meetooUserDB.setProvince(meetooUser.getProvince());
         meetooUserDB.setCity(meetooUser.getCity());

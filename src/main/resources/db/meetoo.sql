@@ -177,7 +177,7 @@ create table meetoo_topic
   comment '用户',
   topic       varchar(1000)    null
   comment '话题',
-  pictures    varchar(255)    null
+  pictures    varchar(1000)    null
   comment '图片',
   status      int default '1' null
   comment '状态(1-正常;-1-失效)',
